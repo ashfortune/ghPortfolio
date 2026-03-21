@@ -280,7 +280,7 @@ const App = () => {
           <p className="mb-2">&copy; 2026 {activeProject ? activeProject.title : "Ashfortune"} Team. All rights reserved.</p>
           <p className="flex items-center justify-center gap-2">
             <Mail size={16} />
-            shfortune | support@ai-lawyer.com
+            yjb1521188@gmail.com
           </p>
         </div>
       </footer>
