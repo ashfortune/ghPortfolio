@@ -73,5 +73,40 @@ export const projects = [
       { name: "이진영 (Dev)", role: "로그인 / 인증" }
     ]
   },
+  {
+    id: 'stocklab',
+    title: 'StockLab',
+    subtitle: '주식 자동매매 시스템',
+    heroTagline: '데이터 기반의 스마트한 투자 전략, StockLab',
+    heroDescription: 'Flask 기반의 주식 데이터 분석 및 자동매매 시스템입니다. 효율적인 자산 관리와 시장 분석을 지원합니다.',
+    heroBg: `${baseUrl}assets/projects/stocklab/images/hero-bg.jpg`,
+    githubUrl: 'https://github.com/ashfortune/StockLab',
+    about: 'StockLab은 Flask 프레임워크를 활용하여 구축된 주식 자동매매 시스템입니다. 현재 초기 개발 단계이며, 실시간 시장 데이터 수집부터 전략 실행까지 아우르는 통합 플랫폼을 목표로 합니다.',
+    features: [
+      {
+        icon: LayoutDashboard,
+        title: '시장 데이터 수집',
+        description: '다양한 API를 통해 실시간 주식 시장 데이터를 수집하고 정규화합니다.',
+        videoSrc: `${baseUrl}assets/projects/stocklab/videos/market-data.mp4`,
+        poster: '',
+        reverse: true
+      },
+      {
+        icon: MessageSquare,
+        title: '자동 매매 엔진',
+        description: '설정된 알고리즘 전략에 따라 자동으로 주문을 체결하고 관리합니다.',
+        videoSrc: `${baseUrl}assets/projects/stocklab/videos/trading-engine.mp4`,
+        poster: ''
+      }
+    ],
+    techStack: [
+      { title: "Backend", items: ["Flask", "Python", "SQLAlchemy", "PyMySQL"] },
+      { title: "Database", items: ["MariaDB / MySQL"] },
+      { title: "AI & Data", items: ["Pandas (추후 예정)"] }
+    ],
+    team: [
+      { name: "유재복", role: "Project PM / Developer" }
+    ]
+  },
   // 추후 새로운 프로젝트를 여기에 추가할 수 있습니다.
 ];
