@@ -278,10 +278,16 @@ const App = () => {
       <footer className="py-16 border-t border-white/10 text-center text-text-muted text-sm">
         <div className="container mx-auto px-6">
           <p className="mb-2">&copy; 2026 {activeProject ? activeProject.title : "Ashfortune"} Team. All rights reserved.</p>
-          <p className="flex items-center justify-center gap-2">
-            <Mail size={16} />
-            yjb1521188@gmail.com
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
+            <p className="flex items-center gap-2 hover:text-white transition-colors">
+              <Mail size={16} />
+              yjb1521188@gmail.com
+            </p>
+            <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors group">
+              <Github size={16} className="group-hover:text-primary transition-colors" />
+              github.com/ashfortune
+            </a>
+          </div>
         </div>
       </footer>
     </div>
