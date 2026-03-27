@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Scale, 
-  PlayCircle, 
-  Github, 
+import {
+  Code,
+  PlayCircle,
+  Github,
   Mail,
   Menu,
   X,
@@ -19,10 +19,10 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
     <nav className="fixed top-0 left-0 w-full h-20 flex items-center glass z-50">
       <div className="container mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-2 text-2xl font-bold">
-          <Scale className="text-primary" size={32} />
+          <Code className="text-primary" size={32} />
           <span>My Portfolio</span>
         </div>
-        
+
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <div className="flex bg-white/5 rounded-full p-1 border border-white/10">
@@ -30,11 +30,10 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
               <button
                 key={proj.id}
                 onClick={() => setActiveProject(proj)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                  activeProject.id === proj.id 
-                    ? 'bg-primary text-white shadow-lg' 
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeProject.id === proj.id
+                    ? 'bg-primary text-white shadow-lg'
                     : 'text-text-muted hover:text-white'
-                }`}
+                  }`}
               >
                 {proj.title}
               </button>
@@ -61,22 +60,20 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
               <span className="text-xs font-bold text-text-muted uppercase tracking-wider">Navigation</span>
               <button
                 onClick={() => { setActiveProject(null); setIsOpen(false); }}
-                className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${
-                  !activeProject ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
-                }`}
+                className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${!activeProject ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
+                  }`}
               >
                 Home
                 {!activeProject && <ChevronRight size={16} />}
               </button>
-              
+
               <span className="text-xs font-bold text-text-muted uppercase tracking-wider mt-4">Projects</span>
               {projects.map((proj) => (
                 <button
                   key={proj.id}
                   onClick={() => { setActiveProject(proj); setIsOpen(false); }}
-                  className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${
-                    activeProject?.id === proj.id ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
-                  }`}
+                  className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${activeProject?.id === proj.id ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
+                    }`}
                 >
                   {proj.title}
                   {activeProject?.id === proj.id && <ChevronRight size={16} />}
@@ -109,7 +106,7 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
       </div>
       <div className="flex-1 w-full">
         <div className="relative aspect-video bg-bg-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-          <video 
+          <video
             key={videoSrc} // Force key to re-render video tag when src changes
             className="w-full h-full object-cover"
             controls={isPlaying}
@@ -123,15 +120,15 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
-          
+
           {!isPlaying && false && (
-            <div 
+            <div
               className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center cursor-pointer group-hover:bg-black/20 transition-all"
               onClick={() => setIsPlaying(true)}
             >
               <PlayCircle className="text-white mb-4 group-hover:scale-110 transition-transform" size={64} />
               <span className="text-white font-medium text-center px-4">
-                시연 영상 재생<br/>
+                시연 영상 재생<br />
                 <span className="text-xs opacity-60">({videoSrc.split('/').pop()})</span>
               </span>
             </div>
@@ -147,18 +144,18 @@ const App = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar 
-        projects={projects} 
-        activeProject={activeProject || { id: 'home' }} 
-        setActiveProject={setActiveProject} 
+      <Navbar
+        projects={projects}
+        activeProject={activeProject || { id: 'home' }}
+        setActiveProject={setActiveProject}
       />
 
       {!activeProject ? (
         /* Home Section */
         <section id="home" className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ 
+            style={{
               backgroundImage: 'linear-gradient(to bottom, #0f172a, #1e293b)',
               opacity: 1
             }}
@@ -185,11 +182,11 @@ const App = () => {
         <>
           {/* Hero Section */}
           <section id="hero" key={activeProject.id} className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
-              style={{ 
+              style={{
                 backgroundImage: `linear-gradient(to bottom, transparent, #0f172a), url('${activeProject.heroBg}')`,
-                opacity: 0.4 
+                opacity: 0.4
               }}
             />
             <div className="relative z-10 max-w-4xl">
@@ -229,9 +226,9 @@ const App = () => {
           <section id="features" className="py-32 bg-[#0c1222]">
             <div className="container mx-auto px-6">
               <h2 className="text-4xl font-bold text-center mb-24">Feature Showcases</h2>
-              
+
               {activeProject.features.map((feature, idx) => (
-                <FeatureItem 
+                <FeatureItem
                   key={`${activeProject.id}-f-${idx}`}
                   {...feature}
                 />
@@ -281,7 +278,7 @@ const App = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
             <p className="flex items-center gap-2 hover:text-white transition-colors">
               <Mail size={16} />
-              yjb1521188@gmail.com
+              yjb152188@gmail.com
             </p>
             <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors group">
               <Github size={16} className="group-hover:text-primary transition-colors" />

@@ -76,50 +76,50 @@ export const projects = [
   {
     id: 'stocklab',
     title: 'StockLab',
-    subtitle: '데이터 기반 투자 실험 및 분석 플랫폼',
+    subtitle: '데이터 분석 기반의 올인원 모의 주식 투자 플랫폼',
     heroTagline: 'Investigate & Simulate, Innovate Your Investment',
-    heroDescription: '한국투자증권(KIS) 실시간 API를 활용한 가상 투자 환경을 구축하고, AI 분석을 통해 사용자의 투자 가설을 검증하는 "투자 실험실" 플랫폼입니다.',
+    heroDescription: '현대적인 웹 환경에서 데이터 분석과 안정적인 주식 매매를 지원하는 플랫폼입니다. Flask의 모듈형 아키텍처와 실시간 통신 기술을 활용하여 사용자에게 직관적이고 강력한 투자 도구를 제공합니다.',
     heroBg: `${baseUrl}assets/projects/stocklab/images/hero-bg.jpg`,
-    githubUrl: 'https://github.com/ashfortune/StockLab',
-    about: 'StockLab은 실제 자산 손실 없이 투자 전략을 테스트하고 싶은 사용자 및 데이터 기반의 포트폴리오 관리를 원하는 투자자를 위해 개발되었습니다. KIS API의 실시간 시세를 바탕으로 가상 매매를 지원하며, AI가 사용자의 투자 성향을 분석하여 최적화된 리밸런싱 전략을 제안합니다.',
+    githubUrl: 'https://github.com/human13th2team/StockLab',
+    about: 'StockLab은 실제 자산 손실 없이 투자 전략을 테스트하고 싶은 사용자를 위해 개발되었습니다. KIS API의 실시간 시세를 바탕으로 정교한 가상 매매를 지원하며, AI가 사용자의 투자 성향을 분석하여 최적화된 리밸런싱 전략을 제안하는 "투자 실험실"입니다.',
     features: [
       {
         icon: LayoutDashboard,
-        title: '연구 지원금 시스템 (Grant & Seed)',
-        description: '실험을 위한 초기 자산(1억 원)을 즉시 지급하며, 투자의 연속성을 위해 일주일 간격으로 추가 연구 지원금을 자동 리필합니다.',
-        videoSrc: `${baseUrl}assets/projects/stocklab/videos/grant-system.mp4`,
+        title: '통합 대시보드 및 분석 리포트',
+        description: 'Charts.js와 D3.js를 활용하여 주가 변동 및 포트폴리오 비중을 시각화하고, 진보된 알고리즘을 기반으로 한 상세 투자 분석 리포트를 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/stocklab/videos/dashboard-report.mp4`,
         poster: '',
         reverse: true
       },
       {
         icon: MessageSquare,
-        title: '실시간 트레이딩 실험 (Trading Engine)',
-        description: '지정가 주문 시스템과 자산 동결 처리를 통해 정교한 매수/매도 로직을 가동하며 실시간 체결 엔진으로 데이터 무결성을 확보합니다.',
-        videoSrc: `${baseUrl}assets/projects/stocklab/videos/trading-engine.mp4`,
+        title: '실시간 트레이딩 시스템',
+        description: 'Socket.IO 연동을 통한 실시간 체결 엔진으로 정교한 매수/매도 로직을 가동하며, 자산 동결 처리 및 서비스 레이어 패턴으로 데이터 무결성을 확보했습니다.',
+        videoSrc: `${baseUrl}assets/projects/stocklab/videos/trading-system.mp4`,
         poster: ''
       },
       {
-        icon: Bell,
-        title: 'AI 기반 포트폴리오 연구 (AI Analysis)',
-        description: '보유 종목 데이터를 바탕으로 Gemini/OpenAI가 사용자의 투자 스타일을 진단하고, 실시간 뉴스 및 지표를 결합하여 리밸런싱 전략을 제안합니다.',
-        videoSrc: `${baseUrl}assets/projects/stocklab/videos/ai-analysis.mp4`,
+        icon: UserCheck,
+        title: '하이브리드 인증 및 보안',
+        description: 'JWT 기반의 보안 세션 관리와 역할 기반 접근 제어(RBAC)를 통해 안전한 회원 관리를 지원하며, AI 분석과 연동된 개인화된 투자 환경을 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/stocklab/videos/auth-security.mp4`,
         poster: '',
         reverse: true
       }
     ],
     techStack: [
-      { title: "Backend", items: ["Flask 3.0.3", "Python", "SQLAlchemy", "Flask-APScheduler"] },
-      { title: "Frontend", items: ["Jinja2", "Tailwind CSS"] },
-      { title: "Database", items: ["MariaDB", "Redis (Token/Pub-Sub)"] },
+      { title: "Backend", items: ["Flask 3.0.3", "Python 3.10", "Flask-SocketIO", "Flask-JWT-Extended"] },
+      { title: "Frontend", items: ["Jinja2", "Vanilla JavaScript", "Tailwind CSS", "Charts.js", "D3.js"] },
+      { title: "Database", items: ["MariaDB", "Redis (Pub-Sub / Token Management)"] },
       { title: "External API", items: ["KIS API", "Gemini AI"] }
     ],
     team: [
-      { name: "유재복", role: "실시간 체결 엔진 개발" },
-      { name: "탁유제", role: "시장 데이터 및 관리자 API" },
-      { name: "문광명", role: "트레이딩 시스템 설계" },
-      { name: "강민재", role: "AI 분석 및 스케줄러" },
-      { name: "박시원", role: "인프라 및 인증 시스템" },
-      { name: "이진영", role: "Auth 및 초기 자금 로직" }
+      { name: "유재복 (PM)", role: "실시간 체결 엔진 (Execution Engine)" },
+      { name: "탁유제 (PL)", role: "시장 데이터 및 관리자 API (Market Data)" },
+      { name: "박시원", role: "보안 인증 및 인프라 (Auth & Infra)" },
+      { name: "이진영", role: "보안 인증 및 초기 자금 로직 (Auth & Infra)" },
+      { name: "문광명", role: "트레이딩 시스템 설계 (Trading System)" },
+      { name: "강민재", role: "AI 분석 및 스케줄러 (AI & Analytics)" }
     ]
   },
   // 추후 새로운 프로젝트를 여기에 추가할 수 있습니다.
