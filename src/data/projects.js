@@ -100,8 +100,8 @@ export const projects = [
       },
       {
         icon: UserCheck,
-        title: '하이브리드 인증 및 보안',
-        description: 'JWT 기반의 보안 세션 관리와 역할 기반 접근 제어(RBAC)를 통해 안전한 회원 관리를 지원하며, AI 분석과 연동된 개인화된 투자 환경을 제공합니다.',
+        title: '데이터 기반 관리 및 주문 분석',
+        description: '매매 내역의 상세 추적과 체계적인 관리를 위해 주문 로그 및 관리 콘솔을 제공합니다. 실시간 데이터 동기화를 통해 모든 거래의 흐름을 한눈에 파악하고 전략을 점검할 수 있습니다.',
         videoSrc: `${baseUrl}assets/projects/stocklab/videos/auth-security.mp4`,
         poster: '',
         reverse: true
