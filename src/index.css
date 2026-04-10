@@ -46,6 +46,10 @@
   animation: fadeInUp 1s forwards;
 }
 
+.animate-width {
+  animation: growWidth 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -60,4 +64,22 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes growWidth {
+  from { width: 0; }
+  to { width: var(--target-width); }
+}
+
+/* Custom Skill Bar styles */
+.skill-bar-container {
+  @apply h-2 w-full bg-slate-100 rounded-full overflow-hidden mb-6;
+}
+
+.skill-bar-fill {
+  @apply h-full bg-primary rounded-full relative;
+}
+
+.section-divider {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-black/5 to-transparent;
 }

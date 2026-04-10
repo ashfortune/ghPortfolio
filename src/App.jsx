@@ -8,9 +8,17 @@ import {
   X,
   ChevronRight,
   ChevronLeft,
-  UserCheck
+  UserCheck,
+  Zap,
+  Shield,
+  Cpu,
+  BarChart,
+  Target,
+  ArrowRight,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
-import { projects } from './data/projects';
+import { projects, coreSkills } from './data/projects';
 
 const Navbar = ({ projects, activeProject, setActiveProject }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -120,6 +128,73 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
   );
 };
 
+const ChallengesSection = ({ challenges }) => {
+  if (!challenges || challenges.length === 0) return null;
+
+  return (
+    <section id="challenges" className="py-32 bg-white">
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-24 text-text-main">Challenges & Solutions</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {challenges.map((challenge, idx) => (
+            <div key={idx} className="bg-slate-50 p-8 rounded-2xl border border-black/5 hover:border-primary/30 transition-all flex gap-6">
+              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary flex items-center justify-center rounded-xl">
+                <AlertCircle size={24} />
+              </div>
+              <div>
+                <h4 className="text-xl font-bold mb-4 text-text-main">{challenge.title}</h4>
+                <div className="space-y-4">
+                  <div>
+                    <span className="text-xs font-bold text-rose-500 uppercase tracking-tighter block mb-1">Problem</span>
+                    <p className="text-text-muted leading-relaxed">{challenge.problem}</p>
+                  </div>
+                  <div className="pt-4 border-t border-black/5">
+                    <span className="text-xs font-bold text-emerald-500 uppercase tracking-tighter block mb-1">Solution</span>
+                    <p className="text-text-main font-medium leading-relaxed">{challenge.solution}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const SkillMapSection = ({ skills }) => {
+  return (
+    <section id="skills" className="py-32 bg-white">
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-24 text-text-main">Core Competencies</h2>
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
+          {skills.map((group, idx) => (
+            <div key={idx} className="animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
+              <div className="flex justify-between items-end mb-4">
+                <h4 className="text-lg font-bold text-text-main">{group.category}</h4>
+                <span className="text-primary font-bold">{group.level}%</span>
+              </div>
+              <div className="skill-bar-container">
+                <div 
+                  className="skill-bar-fill animate-width" 
+                  style={{ '--target-width': `${group.level}%` }}
+                ></div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {group.skills.map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-slate-50 text-text-muted text-xs rounded-full border border-black/5">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -192,33 +267,59 @@ const App = () => {
       />
 
       {!activeProject ? (
-        /* Home Section */
-        <section id="home" className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'linear-gradient(to bottom, #f8fafc, #ffffff)',
-              opacity: 1
-            }}
-          />
-          <div className="relative z-10 max-w-4xl">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/30 text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
-              Welcome to My Portfolio
+        <>
+          <section id="home" className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: 'linear-gradient(to bottom, #f8fafc, #ffffff)',
+                opacity: 1
+              }}
+            />
+            <div className="relative z-10 max-w-4xl">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary border border-primary/30 text-xs font-bold uppercase tracking-widest mb-6 animate-fade-in">
+                Welcome to My Portfolio
+              </div>
+              <h1 className="text-6xl md:text-8xl font-extrabold mb-8 leading-tight animate-fade-in [animation-delay:100ms]">
+                Ashfortune's<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
+                  Portfolio
+                </span>
+              </h1>
+              <p className="text-xl md:text-2xl text-text-muted mb-12 animate-fade-in opacity-0 [animation-delay:300ms]">
+                AI 협업을 통한 비즈니스 가치 창출과 혁신적인 솔루션을 제안합니다.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in opacity-0 [animation-delay:600ms]">
+                <button onClick={() => {
+                  const el = document.getElementById('skills');
+                  el?.scrollIntoView({ behavior: 'smooth' });
+                }} className="btn btn-outline">역량 확인하기</button>
+                <button onClick={() => setActiveProject(projects[0])} className="btn btn-primary ml-2">프로젝트 구경하기</button>
+              </div>
             </div>
-            <h1 className="text-6xl md:text-8xl font-extrabold mb-8 leading-tight animate-fade-in [animation-delay:100ms]">
-              Ashfortune's<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
-                Portfolio
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-text-muted mb-12 animate-fade-in opacity-0 [animation-delay:300ms]">
-              AI 협업을 통한 비즈니스 가치 창출과 혁신적인 솔루션을 제안합니다.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in opacity-0 [animation-delay:600ms]">
-              <button onClick={() => setActiveProject(projects[0])} className="btn btn-primary">프로젝트 구경하기</button>
+          </section>
+          <SkillMapSection skills={coreSkills} />
+          
+          <section className="py-32 bg-slate-50">
+            <div className="container mx-auto px-6 text-center">
+              <h2 className="text-3xl font-bold mb-12">Latest Projects</h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {projects.slice(0, 3).map(proj => (
+                  <div key={proj.id} className="bg-white p-8 rounded-2xl border border-black/5 shadow-sm hover:shadow-xl transition-all text-left cursor-pointer group" onClick={() => setActiveProject(proj)}>
+                    <div className="text-primary mb-4 p-3 bg-primary/5 inline-block rounded-xl group-hover:scale-110 transition-transform">
+                      <Zap size={24} />
+                    </div>
+                    <h4 className="text-xl font-bold mb-2">{proj.title}</h4>
+                    <p className="text-text-muted text-sm mb-6 line-clamp-2">{proj.subtitle}</p>
+                    <div className="flex items-center text-primary text-sm font-bold">
+                      상세 보기 <ArrowRight className="ml-2" size={16} />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </>
       ) : (
         <>
           {/* Hero Section */}
@@ -242,6 +343,16 @@ const App = () => {
                   {activeProject.heroTagline.split(',')[1]}
                 </span>
               </h1>
+              
+              <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in opacity-0 [animation-delay:200ms]">
+                {activeProject.highlights?.map((h, i) => (
+                  <div key={i} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-sm font-medium">
+                    <h.icon size={16} className="text-primary" />
+                    {h.text}
+                  </div>
+                ))}
+              </div>
+
               <p className="text-xl md:text-2xl text-text-muted mb-12 animate-fade-in opacity-0 [animation-delay:300ms]">
                 {activeProject.heroDescription}
               </p>
@@ -256,9 +367,9 @@ const App = () => {
           </section>
 
           {/* About Section */}
-          <section id="about" className="py-32 container mx-auto px-6 border-b border-white/5">
+          <section id="about" className="py-32 container mx-auto px-6 border-b border-black/5">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-4xl font-bold mb-6">About {activeProject.title}</h2>
+              <h2 className="text-4xl font-bold mb-6 text-text-main">About {activeProject.title}</h2>
               <p className="text-xl text-text-muted leading-relaxed">
                 {activeProject.about}
               </p>
@@ -279,12 +390,15 @@ const App = () => {
             </div>
           </section>
 
+          {/* Challenges Section */}
+          <ChallengesSection challenges={activeProject.challenges} />
+
           {/* Tech Stack Section */}
           <section id="tech-stack" className="py-32 container mx-auto px-6 text-center">
-            <h2 className="text-4xl font-bold mb-16">Technology Stack</h2>
+            <h2 className="text-4xl font-bold mb-16 text-text-main">Technology Stack</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
               {activeProject.techStack.map((stack, idx) => (
-                <div key={idx} className="bg-bg-card p-8 rounded-2xl border border-white/10 hover:border-primary transition-all text-left group">
+                <div key={idx} className="bg-white p-8 rounded-2xl border border-black/5 shadow-sm hover:border-primary transition-all text-left group">
                   <h4 className="text-primary font-bold text-xl mb-6 group-hover:translate-x-1 transition-transform">{stack.title}</h4>
                   <ul className="text-text-muted space-y-2">
                     {stack.items.map((item, i) => <li key={i} className="flex items-center gap-2">

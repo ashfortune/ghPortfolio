@@ -6,10 +6,22 @@ import {
   UserCheck,
   MapPin,
   Calendar,
-  Code
+  Code,
+  Zap,
+  Shield,
+  Cpu,
+  BarChart,
+  Target
 } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
+
+export const coreSkills = [
+  { category: 'AI & Data', skills: ['Deep Learning (YOLOv8)', 'Machine Learning (XGBoost)', 'RAG (LangChain4j)', 'Data Visualization'], level: 90 },
+  { category: 'Backend', skills: ['Spring Boot', 'Java', 'Flask', 'Python', 'MySQL/MariaDB', 'PostgreSQL'], level: 85 },
+  { category: 'Frontend', skills: ['React', 'Next.js', 'Nuxt 3', 'Vue 3', 'Tailwind CSS'], level: 80 },
+  { category: 'DevOps & Tools', skills: ['Docker', 'Git/GitHub', 'CI/CD (Actions)', 'Supabase'], level: 75 }
+];
 
 export const projects = [
   {
@@ -21,7 +33,24 @@ export const projects = [
     heroDescription: '전문적인 계약서 분석부터 실시간 사후 감시까지, 올라운드 법률 에이전트 AI-Lawyer를 소개합니다.',
     heroBg: `${baseUrl}assets/projects/ai-lawyer/images/hero-bg.jpg`,
     githubUrl: 'https://github.com/ashfortune/AI-Lawyer',
-    about: 'AI-Lawyer는 복잡한 법률 용어와 높은 자문 비용으로 인해 법적 접근성이 낮은 개인 및 소상공인을 위해 개발되었습니다. 사용자가 업로드한 계약서의 유불리 조항을 정밀 분석하고, 실시간 RAG 기반 챗봇 상담을 통해 법률 리스크를 사전에 예방합니다.',
+    about: 'AI-Lawyer는 법률 접근성 문제를 해결하기 위해 개발된 서비스입니다. 다중 LLM 아키텍처를 통해 계약서의 독소 조항을 정밀 분석하고, RAG(Retrieval-Augmented Generation) 시스템을 구축하여 정확도 높은 법률 상담 기능을 제공합니다.',
+    highlights: [
+      { icon: Cpu, text: 'Gemini + Groq(Llama 3.3) 하이브리드 AI 구조' },
+      { icon: Shield, text: 'Supabase pgvector 기반 RAG 시스템 구축' },
+      { icon: Zap, text: 'AI 개발 거버넌스(.ai-rules.md)를 통한 팀 협업 최적화' }
+    ],
+    challenges: [
+      {
+        title: '분산 환경에서의 CORS 및 보안 통신',
+        problem: 'Netlify(FE)와 Koyeb(BE)의 분리된 도메인 간 통신 시 보안 정책으로 인한 요청 차단.',
+        solution: 'Spring Security의 CorsConfiguration을 고도화하고 JWT 기반 무상태 인증을 통해 보안성을 유지하며 통신 성공.'
+      },
+      {
+        title: 'AI 코딩 어시스턴트 활용 시의 코드 파편화',
+        problem: '6인의 팀원이 AI 툴을 개별 사용하면서 발생하는 명명 규칙 및 엔티티 매핑 불일치.',
+        solution: '프로젝트 루트에 AI용 인스트럭션(.ai-rules.md)을 배치하여 AI가 팀 컨벤션을 준수하도록 강제하여 버그 제로화.'
+      }
+    ],
     features: [
       {
         icon: FileText,
@@ -86,7 +115,19 @@ export const projects = [
     heroDescription: '현대적인 웹 환경에서 데이터 분석과 안정적인 주식 매매를 지원하는 플랫폼입니다. Flask의 모듈형 아키텍처와 실시간 통신 기술을 활용하여 사용자에게 직관적이고 강력한 투자 도구를 제공합니다.',
     heroBg: `${baseUrl}assets/projects/stocklab/images/hero-bg.jpg`,
     githubUrl: 'https://github.com/ashfortune/StockLab',
-    about: 'StockLab은 실제 자산 손실 없이 투자 전략을 테스트하고 싶은 사용자를 위해 개발되었습니다. KIS API의 실시간 시세를 바탕으로 정교한 가상 매매를 지원하며, AI가 사용자의 투자 성향을 분석하여 최적화된 리밸런싱 전략을 제안하는 "투자 실험실"입니다.',
+    about: 'StockLab은 실제 자산 손실 없이 투자 전략을 테스트하고 싶은 사용자를 위해 개발되었습니다. KIS API의 실시간 시세를 바탕으로 정교한 가상 매매를 지원하며, 실시간 통신 기술을 통해 투자자에게 생동감 있는 경험을 제공합니다.',
+    highlights: [
+      { icon: Zap, text: 'Socket.IO 기반의 실시간 주식 체결 가상 엔진' },
+      { icon: LayoutDashboard, text: 'Flask 모듈형 아키텍처 기반의 확장성 확보' },
+      { icon: BarChart, text: 'D3.js / Charts.js를 활용한 고급 자산 분석' }
+    ],
+    challenges: [
+      {
+        title: '대량의 실시간 데이터 처리 효율화',
+        problem: '다수의 사용자가 실시간 시세를 요청할 때 서버 부하 급증 및 응답 지연 발생.',
+        solution: 'Redis Pub/Sub 구조를 도입하여 데이터 전송 부하를 분산하고 서비스 계열 패턴(Service Layer)으로 데이터 무결성 보장.'
+      }
+    ],
     features: [
       {
         icon: LayoutDashboard,
@@ -136,7 +177,19 @@ export const projects = [
     heroDescription: '개인 호스트가 기획한 창의적인 투어를 통해 획일화된 여행을 넘어 진짜 서울을 만납니다.',
     heroBg: `${baseUrl}assets/projects/haruseoul/images/hero-bg.jpg`,
     githubUrl: 'https://github.com/ashfortune/HaruSeoul',
-    about: 'HaruSeoul은 서울 시민이 직접 가이드가 되어 자신만의 독창적인 여행 프로그램을 공유하는 예약 플랫폼입니다. 낮은 진입 장벽으로 누구나 호스트가 될 수 있으며, 게스트는 실시간 SSE 알림 시스템을 통해 끊김 없는 예약 경험을 누릴 수 있습니다.',
+    about: 'HaruSeoul은 서울 시민이 직접 가이드가 되어 자신만의 독창적인 여행 프로그램을 공유하는 예약 플랫폼입니다. 호스트와 게스트의 실시간 소통을 위해 SSE 알림 시스템을 적극 활용하였습니다.',
+    highlights: [
+      { icon: Bell, text: 'SSE(Server-Sent Events) 기반 실시간 알림 시스템' },
+      { icon: Code, text: 'JPA와 MyBatis를 혼용한 하이브리드 데이터 접근' },
+      { icon: UserCheck, text: '호스트 예약 관리 거버넌스 로직 구현' }
+    ],
+    challenges: [
+      {
+        title: '실시간 알림 연결의 자정 능력 확보',
+        problem: '비정상 종료된 클라이언트 리소스가 서버에 잔류하여 메모리 누수 발생 가능성.',
+        solution: 'ConcurrentHashMap 기반의 Registry를 구축하고 생명주기 콜백(onCompletion, onTimeout)을 연동하여 리소스 자동 반납 체계 구축.'
+      }
+    ],
     features: [
       {
         icon: MapPin,
@@ -182,7 +235,19 @@ export const projects = [
     heroDescription: 'YOLOv8 딥러닝 모델을 활용하여 사진 속 음식을 자동으로 인식하고, 실시간 영양 정보(칼로리, 탄단지)를 분석하여 식단 관리를 돕습니다.',
     heroBg: `${baseUrl}assets/projects/food-analyzer/images/background.png`,
     githubUrl: 'https://github.com/ashfortune/DeepLearning',
-    about: 'Food Analyzer는 현대인의 체계적인 식단 관리를 위해 개발된 인공지능 솔루션입니다. 사용자가 식사 전 사진을 찍으면 YOLOv8 알고리즘이 163종의 음식을 정밀 탐지하며, FatSecret API 연동을 통해 즉각적인 영양 성분 보고서를 생성합니다.',
+    about: 'Food Analyzer는 163종의 방대한 음식 데이터셋을 학습한 인공지능이 사용자의 식단을 분석하는 서비스입니다. FatSecret API를 연동하여 결과의 신뢰도를 높였습니다.',
+    highlights: [
+      { icon: Target, text: 'Custom finalfood 데이터셋(163종) YOLOv8 학습' },
+      { icon: Cpu, text: 'FatSecret API 연동 실시간 영양성분 맵핑' },
+      { icon: BarChart, text: '복수 객체 인식 기반 영양 총량(Total Nutrition) 계산' }
+    ],
+    challenges: [
+      {
+        title: '다양한 조명과 각도에서의 인식 정확도 개선',
+        problem: '실제 식단 사진의 배경 노이즈로 인해 특정 음식 인식률이 60% 미만으로 정체.',
+        solution: '데이터 증강(Augmentation) 기법 적용 및 Roboflow를 통한 라벨링 정밀화로 mAP 성능 15% 이상 개선.'
+      }
+    ],
     features: [
       {
         icon: FileText,
@@ -226,7 +291,19 @@ export const projects = [
     heroDescription: '서울시 전역의 실거래 데이터를 XGBoost 알고리즘으로 학습하여, 정밀한 주택 매매가 예측과 핵심 가격 결정 요인 분석을 제공합니다.',
     heroBg: '',
     githubUrl: 'https://github.com/ashfortune/MachineLearning',
-    about: 'Seoul Real Estate AI Price Predictor는 복잡한 서울 부동산 시장의 흐름을 데이터로 읽어내기 위해 개발되었습니다. 2024-2026년 실거래 데이터를 바탕으로 주택의 물리적 특성과 지리적 요인을 종합 분석하여, 결정계수(R²) 0.9162에 달하는 높은 예측 성능을 보여줍니다.',
+    about: 'Seoul Real Estate AI Price Predictor는 대규모 실거래가 데이터(2024-2026)를 기반으로 서울시 부동산 가치를 예측하는 모델입니다. GridSearchCV를 통해 최적의 파라미터를 도출했습니다.',
+    highlights: [
+      { icon: Target, text: '최종 예측 모델 결정계수(R²) 0.9162 달성' },
+      { icon: BarChart, text: 'Feature Importance 분석을 통한 가격 결정 요인 도출' },
+      { icon: Zap, text: '모델 직렬화(.pkl)를 통한 대시보드 로딩 속도 최적화' }
+    ],
+    challenges: [
+      {
+        title: '부동산 시장의 비선형적 변동성 학습',
+        problem: '단순 선형 회귀 적용 시 결정계수(R²)가 0.65 수준으로 낮아 예측 신뢰도 부족.',
+        solution: '비선형 관계 학습에 강한 XGBoost 회귀 모델을 채택하고 최적화하여 설명력을 91%까지 확보.'
+      }
+    ],
     features: [
       {
         icon: LayoutDashboard,
