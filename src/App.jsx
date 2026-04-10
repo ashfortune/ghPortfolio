@@ -213,11 +213,11 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
         <p className="text-text-muted text-lg leading-relaxed">{description}</p>
       </div>
       <div className="flex-1 w-full">
-        <div className="relative aspect-video bg-bg-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+        <div className="relative aspect-video bg-black rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
           {videoSrc.match(/\.(mp4|webm|ogg)$/i) ? (
             <video
               key={videoSrc}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
               controls={isPlaying}
               autoPlay
               muted
@@ -233,7 +233,7 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
             <img 
               src={videoSrc} 
               alt={title} 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           )}
 
