@@ -250,10 +250,10 @@ export const projects = [
     ],
     features: [
       {
-        icon: FileText,
-        title: '커스텀 데이터셋 분석',
-        description: '163개 클래스로 구성된 finalfood 커스텀 데이터셋의 라벨 분포와 객체 크기 분포를 분석하여 학습 품질을 관리합니다.',
-        videoSrc: `${baseUrl}assets/projects/food-analyzer/images/labels.jpg`,
+        icon: PlayCircle,
+        title: 'AI 서비스 실시간 시연',
+        description: 'YOLOv8 모델을 통해 업로드된 이미지에서 음식을 즉시 식별하고, FatSecret API와 연동하여 영양 정보를 분석하는 전체 프로세스를 확인하세요.',
+        videoSrc: `${baseUrl}assets/projects/food-analyzer/videos/Bandicam_20260410_155957.mp4`,
         poster: ''
       },
       {
@@ -270,6 +270,14 @@ export const projects = [
         description: '총 163종의 음식 클래스 간 분류 성능을 시각적으로 분석하여, 유사한 음식 간의 오인식 가능성을 사전에 파악하고 개선합니다.',
         videoSrc: `${baseUrl}assets/projects/food-analyzer/images/confusion_matrix_normalized.png`,
         poster: ''
+      },
+      {
+        icon: FileText,
+        title: '커스텀 데이터셋 분석',
+        description: '163개 클래스로 구성된 finalfood 커스텀 데이터셋의 라벨 분포와 객체 크기 분포를 분석하여 학습 품질을 관리합니다.',
+        videoSrc: `${baseUrl}assets/projects/food-analyzer/images/labels.jpg`,
+        poster: '',
+        reverse: true
       }
     ],
     techStack: [
@@ -306,10 +314,10 @@ export const projects = [
     ],
     features: [
       {
-        icon: LayoutDashboard,
-        title: '자치구별 거래 분석 및 시각화',
-        description: '서울시 전역의 거래 비중을 분석하여 지역적 특성에 따른 가격 편차를 학습 변수로 활용합니다. 거래 데이터의 분포를 한눈에 파악할 수 있는 대시보드를 제공합니다.',
-        videoSrc: `${baseUrl}assets/projects/house-pricing/images/transaction_count_by_district.png`,
+        icon: PlayCircle,
+        title: '부동산 예측 서비스 시연',
+        description: '서울시 자치구, 건물면적, 층수, 건축년도 등 변수를 입력하여 AI가 실시간으로 주택 매매가를 예측하는 대시보드 구동 영상입니다.',
+        videoSrc: `${baseUrl}assets/projects/house-pricing/videos/Bandicam_20260410_155726.mp4`,
         poster: ''
       },
       {
@@ -321,11 +329,19 @@ export const projects = [
         reverse: true
       },
       {
+        icon: LayoutDashboard,
+        title: '자치구별 거래 분석 및 시각화',
+        description: '서울시 전역의 거래 비중을 분석하여 지역적 특성에 따른 가격 편차를 학습 변수로 활용합니다. 거래 데이터의 분포를 한눈에 파악할 수 있는 대시보드를 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/house-pricing/images/transaction_count_by_district.png`,
+        poster: ''
+      },
+      {
         icon: FileText,
         title: '핵심 가격 결정 요인 분석',
         description: '전용면적, 자치구 위치 등 주택 가격 형성에 결정적인 영향을 미치는 변수들의 중요도를 시각화하여 제공합니다. 데이터 기반의 합리적인 의사결정을 돕습니다.',
         videoSrc: `${baseUrl}assets/projects/house-pricing/images/feature_importance.png`,
-        poster: ''
+        poster: '',
+        reverse: true
       }
     ],
     techStack: [
