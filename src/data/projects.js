@@ -5,7 +5,8 @@ import {
   Bell,
   UserCheck,
   MapPin,
-  Calendar
+  Calendar,
+  Code
 } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
