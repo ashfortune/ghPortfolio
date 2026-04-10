@@ -180,7 +180,7 @@ export const projects = [
     subtitle: 'YOLOv8 기반의 실시간 음식 인식 및 영양 분석 솔루션',
     heroTagline: '당신의 식탁을 더 스마트하게, 영양까지 꼼꼼하게',
     heroDescription: 'YOLOv8 딥러닝 모델을 활용하여 사진 속 음식을 자동으로 인식하고, 실시간 영양 정보(칼로리, 탄단지)를 분석하여 식단 관리를 돕습니다.',
-    heroBg: `${baseUrl}assets/projects/food-analyzer/images/results4.png`,
+    heroBg: `${baseUrl}assets/projects/food-analyzer/images/background.png`,
     githubUrl: 'https://github.com/ashfortune/DeepLearning',
     about: 'Food Analyzer는 현대인의 체계적인 식단 관리를 위해 개발된 인공지능 솔루션입니다. 사용자가 식사 전 사진을 찍으면 YOLOv8 알고리즘이 163종의 음식을 정밀 탐지하며, FatSecret API 연동을 통해 즉각적인 영양 성분 보고서를 생성합니다.',
     features: [
@@ -224,7 +224,7 @@ export const projects = [
     subtitle: '서울시 부동산 실거래가 예측 인공지능 엔진',
     heroTagline: '데이터로 예측하는 서울의 내일, 부동산 가치의 재발견',
     heroDescription: '서울시 전역의 실거래 데이터를 XGBoost 알고리즘으로 학습하여, 정밀한 주택 매매가 예측과 핵심 가격 결정 요인 분석을 제공합니다.',
-    heroBg: `${baseUrl}assets/projects/house-pricing/images/actual_vs_predicted_xgb.png`,
+    heroBg: '',
     githubUrl: 'https://github.com/ashfortune/MachineLearning',
     about: 'Seoul Real Estate AI Price Predictor는 복잡한 서울 부동산 시장의 흐름을 데이터로 읽어내기 위해 개발되었습니다. 2024-2026년 실거래 데이터를 바탕으로 주택의 물리적 특성과 지리적 요인을 종합 분석하여, 결정계수(R²) 0.9162에 달하는 높은 예측 성능을 보여줍니다.',
     features: [

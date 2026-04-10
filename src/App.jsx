@@ -18,7 +18,7 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
   return (
     <nav className="fixed top-0 left-0 w-full h-20 flex items-center glass z-50">
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2 text-2xl font-bold">
+        <div className="flex items-center gap-2 text-2xl font-bold text-text-main">
           <Code className="text-primary" size={32} />
           <span>My Portfolio</span>
         </div>
@@ -197,7 +197,7 @@ const App = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'linear-gradient(to bottom, #0f172a, #1e293b)',
+              backgroundImage: 'linear-gradient(to bottom, #f8fafc, #ffffff)',
               opacity: 1
             }}
           />
@@ -226,8 +226,10 @@ const App = () => {
             <div
               className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
               style={{
-                backgroundImage: `linear-gradient(to bottom, transparent, #0f172a), url('${activeProject.heroBg}')`,
-                opacity: 0.4
+                backgroundImage: activeProject.heroBg 
+                  ? `linear-gradient(to bottom, rgba(255, 255, 255, 0.4), #ffffff), url('${activeProject.heroBg}')`
+                  : `linear-gradient(to bottom, #f8fafc, #ffffff)`,
+                opacity: activeProject.heroBg ? 0.7 : 1
               }}
             />
             <div className="relative z-10 max-w-4xl">
@@ -264,9 +266,9 @@ const App = () => {
           </section>
 
           {/* Features Section */}
-          <section id="features" className="py-32 bg-[#0c1222]">
+          <section id="features" className="py-32 bg-slate-50">
             <div className="container mx-auto px-6">
-              <h2 className="text-4xl font-bold text-center mb-24">Feature Showcases</h2>
+              <h2 className="text-4xl font-bold text-center mb-24 text-text-main">Feature Showcases</h2>
 
               {activeProject.features.map((feature, idx) => (
                 <FeatureItem
@@ -296,13 +298,13 @@ const App = () => {
           </section>
 
           {/* Team Section */}
-          <section id="team" className="py-32 bg-[#0c1222]">
+          <section id="team" className="py-32 bg-slate-50 border-t border-black/5">
             <div className="container mx-auto px-6 text-center">
-              <h2 className="text-4xl font-bold mb-16">Our Team</h2>
+              <h2 className="text-4xl font-bold mb-16 text-text-main">Our Team</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {activeProject.team.map((member, idx) => (
-                  <div key={idx} className="bg-white/5 p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-                    <strong className="block text-lg mb-2">{member.name}</strong>
+                  <div key={idx} className="bg-white p-6 rounded-xl border border-black/5 shadow-sm hover:shadow-md transition-all">
+                    <strong className="block text-lg mb-2 text-text-main">{member.name}</strong>
                     <span className="text-text-muted text-sm">{member.role}</span>
                   </div>
                 ))}
@@ -313,15 +315,15 @@ const App = () => {
       )}
 
       {/* Footer */}
-      <footer className="py-16 border-t border-white/10 text-center text-text-muted text-sm">
+      <footer className="py-16 border-t border-black/5 text-center text-text-muted text-sm bg-white">
         <div className="container mx-auto px-6">
           <p className="mb-2">&copy; 2026 {activeProject ? activeProject.title : "Ashfortune"} Team. All rights reserved.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-            <p className="flex items-center gap-2 hover:text-white transition-colors">
+            <p className="flex items-center gap-2 hover:text-primary transition-colors">
               <Mail size={16} />
               yjb152188@gmail.com
             </p>
-            <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors group">
+            <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors group">
               <Github size={16} className="group-hover:text-primary transition-colors" />
               github.com/ashfortune
             </a>

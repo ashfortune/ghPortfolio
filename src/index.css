@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-  --color-bg-dark: #0f172a;
-  --color-bg-card: rgba(30, 41, 59, 0.7);
-  --color-text-main: #f8fafc;
-  --color-text-muted: #94a3b8;
-  --color-highlight: #60a5fa;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-bg-dark: #ffffff;
+  --color-bg-card: #f8fafc;
+  --color-text-main: #0f172a;
+  --color-text-muted: #64748b;
+  --color-highlight: #3b82f6;
+  --color-border-subtle: rgba(0, 0, 0, 0.06);
 }
 
 @layer base {
   * {
-    @apply border-white/10;
+    @apply border-border-subtle;
   }
   body {
     @apply bg-bg-dark text-text-main font-sans antialiased;
@@ -24,16 +25,16 @@
 
 @layer components {
   .glass {
-    @apply backdrop-blur-md bg-white/5 border border-white/10;
+    @apply backdrop-blur-md bg-white/70 border border-black/5 shadow-sm;
   }
   .btn {
     @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-block;
   }
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-hover hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40;
+    @apply bg-primary text-white hover:bg-primary-hover hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20;
   }
   .btn-outline {
-    @apply border border-white/10 bg-white/5 hover:bg-white/10 hover:border-text-muted;
+    @apply border border-black/10 bg-white hover:bg-slate-50 hover:border-primary/30;
   }
 }
 
