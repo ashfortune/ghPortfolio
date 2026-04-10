@@ -24,25 +24,45 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="flex bg-white/5 rounded-full p-1 border border-white/10">
-            {projects.map((proj) => (
-              <button
-                key={proj.id}
-                onClick={() => setActiveProject(proj)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${activeProject.id === proj.id
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'text-text-muted hover:text-white'
-                  }`}
-              >
-                {proj.title}
-              </button>
-            ))}
+        <div className="hidden md:flex items-center gap-6">
+          <div className="flex flex-col items-end mr-4">
+            <span className="text-[10px] text-primary/60 font-bold uppercase tracking-widest mb-1">Web Projects</span>
+            <div className="flex bg-white/5 rounded-full p-1 border border-white/10">
+              {projects.filter(p => p.category === 'web').map((proj) => (
+                <button
+                  key={proj.id}
+                  onClick={() => setActiveProject(proj)}
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeProject.id === proj.id
+                      ? 'bg-primary text-white shadow-lg'
+                      : 'text-text-muted hover:text-white'
+                    }`}
+                >
+                  {proj.title}
+                </button>
+              ))}
+            </div>
           </div>
-          <ul className="flex gap-6 font-medium text-sm">
+
+          <div className="flex flex-col items-end">
+            <span className="text-[10px] text-purple-400 font-bold uppercase tracking-widest mb-1">AI Projects</span>
+            <div className="flex bg-white/5 rounded-full p-1 border border-white/10">
+              {projects.filter(p => p.category === 'ai').map((proj) => (
+                <button
+                  key={proj.id}
+                  onClick={() => setActiveProject(proj)}
+                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeProject.id === proj.id
+                      ? 'bg-purple-500 text-white shadow-lg'
+                      : 'text-text-muted hover:text-white'
+                    }`}
+                >
+                  {proj.title}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          <ul className="flex gap-4 font-medium text-xs ml-4 border-l border-white/10 pl-4">
             <li><button onClick={() => setActiveProject(null)} className={`hover:text-primary ${!activeProject ? 'text-primary' : ''}`}>Home</button></li>
-            <li><a href="#features" className="hover:text-primary">Features</a></li>
-            <li><a href="#tech-stack" className="hover:text-primary">Tech</a></li>
           </ul>
         </div>
 
@@ -67,12 +87,25 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
                 {!activeProject && <ChevronRight size={16} />}
               </button>
 
-              <span className="text-xs font-bold text-text-muted uppercase tracking-wider mt-4">Projects</span>
-              {projects.map((proj) => (
+              <span className="text-xs font-bold text-primary/80 uppercase tracking-wider mt-4 px-2">Web 프로젝트</span>
+              {projects.filter(p => p.category === 'web').map((proj) => (
                 <button
                   key={proj.id}
                   onClick={() => { setActiveProject(proj); setIsOpen(false); }}
                   className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${activeProject?.id === proj.id ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
+                    }`}
+                >
+                  {proj.title}
+                  {activeProject?.id === proj.id && <ChevronRight size={16} />}
+                </button>
+              ))}
+
+              <span className="text-xs font-bold text-purple-400 uppercase tracking-wider mt-4 px-2">AI 프로젝트</span>
+              {projects.filter(p => p.category === 'ai').map((proj) => (
+                <button
+                  key={proj.id}
+                  onClick={() => { setActiveProject(proj); setIsOpen(false); }}
+                  className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${activeProject?.id === proj.id ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' : 'bg-white/5 border border-white/5'
                     }`}
                 >
                   {proj.title}
@@ -106,22 +139,30 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
       </div>
       <div className="flex-1 w-full">
         <div className="relative aspect-video bg-bg-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-          <video
-            key={videoSrc} // Force key to re-render video tag when src changes
-            className="w-full h-full object-cover"
-            controls={isPlaying}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={poster}
-            onPlay={() => setIsPlaying(true)}
-            onClick={() => setIsPlaying(!isPlaying)}
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
+          {videoSrc.match(/\.(mp4|webm|ogg)$/i) ? (
+            <video
+              key={videoSrc}
+              className="w-full h-full object-cover"
+              controls={isPlaying}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={poster}
+              onPlay={() => setIsPlaying(true)}
+              onClick={() => setIsPlaying(!isPlaying)}
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
+          ) : (
+            <img 
+              src={videoSrc} 
+              alt={title} 
+              className="w-full h-full object-cover"
+            />
+          )}
 
-          {!isPlaying && false && (
+          {videoSrc.match(/\.(mp4|webm|ogg)$/i) && !isPlaying && false && (
             <div
               className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center cursor-pointer group-hover:bg-black/20 transition-all"
               onClick={() => setIsPlaying(true)}
