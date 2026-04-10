@@ -345,12 +345,15 @@ const App = () => {
               </h1>
               
               <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in opacity-0 [animation-delay:200ms]">
-                {activeProject.highlights?.map((h, i) => (
-                  <div key={i} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-sm font-medium">
-                    <h.icon size={16} className="text-primary" />
-                    {h.text}
-                  </div>
-                ))}
+                {activeProject.highlights?.map((h, i) => {
+                  const IconComponent = h.icon;
+                  return (
+                    <div key={i} className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-sm font-medium">
+                      <IconComponent size={16} className="text-primary" />
+                      {h.text}
+                    </div>
+                  );
+                })}
               </div>
 
               <p className="text-xl md:text-2xl text-text-muted mb-12 animate-fade-in opacity-0 [animation-delay:300ms]">

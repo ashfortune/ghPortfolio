@@ -1,4 +1,5 @@
 import {
+  PlayCircle,
   FileText,
   MessageSquare,
   LayoutDashboard,
@@ -11,7 +12,8 @@ import {
   Shield,
   Cpu,
   BarChart,
-  Target
+  Target,
+  Search
 } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
