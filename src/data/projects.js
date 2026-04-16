@@ -27,6 +27,70 @@ export const coreSkills = [
 
 export const projects = [
   {
+    id: 'communikate',
+    category: 'ai',
+    title: 'CommuniKate',
+    subtitle: 'MBTI AI 소통 전문가',
+    heroTagline: '메시지 한 줄로 꿰뚫는 상대방의 진심, AI 소통 전문가 CommuniKate',
+    heroDescription: 'BERT 기반 딥러닝과 Gemma 4 LLM을 결합하여 메시지 분석, 맞춤형 답변 제안, 실시간 코칭을 제공하는 지능형 소통 솔루션입니다.',
+    heroBg: `${baseUrl}assets/projects/mbti/images/hero-bg.png`,
+    githubUrl: 'https://github.com/ashfortune/CommuniKate',
+    about: 'CommuniKate는 상대방의 메시지를 분석하여 MBTI 성향을 예측하고, 그에 맞는 최적의 대화 전략을 제안하는 서비스입니다. 딥러닝과 LLM의 하이브리드 구조를 통해 분석의 정확도와 추론의 논리성을 모두 확보했습니다.',
+    highlights: [
+      { icon: Cpu, text: 'BERT & Gemma 4 하이브리드 AI 구조' },
+      { icon: Zap, text: 'Chunking & Majority Voting 기반 정밀 분석' },
+      { icon: MessageSquare, text: '실시간 AI 코칭 및 시뮬레이션 엔진' }
+    ],
+    challenges: [
+      {
+        title: '장문 텍스트의 맥락 파악 및 분석 안정성',
+        problem: '긴 대화 텍스트에서 주요 특징이 희석되어 MBTI 지표 분석의 일관성이 저하되는 문제 발생.',
+        solution: '텍스트를 의미 단위로 분할(Chunking)하여 각각 분석한 뒤 다수결(Majority Voting)로 최종 결과를 도출하는 알고리즘을 설계하여 정확도와 안정성 확보.'
+      }
+    ],
+    features: [
+      {
+        icon: Search,
+        title: '하이브리드 MBTI 분석',
+        description: 'BERT 모델의 4개 지표별 정밀 분석과 LLM의 문맥 추론을 결합하여 메시지 하나로도 정교한 성향 파악이 가능합니다.',
+        videoSrc: `${baseUrl}assets/projects/mbti/videos/message-analysis.mov`,
+        poster: `${baseUrl}assets/projects/mbti/images/05_all_axes_comparison.png`,
+        reverse: true
+      },
+      {
+        icon: Zap,
+        title: '맞춤형 소통 가이드',
+        description: '분석된 상대방의 성향과 나의 성향을 고려한 최적의 답변 예시와 소통 전략을 제안하여 대화의 품질을 높입니다.',
+        videoSrc: `${baseUrl}assets/projects/mbti/videos/communication-guide.mov`,
+        poster: `${baseUrl}assets/projects/mbti/images/final_voting_comparison.png`
+      },
+      {
+        icon: MessageSquare,
+        title: '실시간 AI 코칭 채팅',
+        description: '특정 MBTI 페르소나와 직접 대화하며 연습하고, 나의 메시지가 상대방에게 어떻게 느껴질지 실시간으로 피드백을 받습니다.',
+        videoSrc: `${baseUrl}assets/projects/mbti/videos/conversation-coaching.mov`,
+        poster: `${baseUrl}assets/projects/mbti/images/06_combined_confusion_matrix.png`,
+        reverse: true
+      },
+      {
+        icon: FileText,
+        title: '이미지 OCR 대화 분석',
+        description: '메신저 캡처 이미지를 업로드하면 OCR 기술로 대화 내용을 추출하여 즉시 분석에 활용할 수 있습니다.',
+        videoSrc: `${baseUrl}assets/projects/mbti/videos/image-ocr-analysis.mov`,
+        poster: `${baseUrl}assets/projects/mbti/images/01_data_eda.png`
+      }
+    ],
+    techStack: [
+      { title: "Deep Learning", items: ["Python", "TensorFlow / Keras", "HuggingFace BERT"] },
+      { title: "LLM & AI", items: ["Gemma 4", "Ollama", "Google GenAI API", "FastAPI"] },
+      { title: "Frontend", items: ["Gradio", "Custom UI Logic"] },
+      { title: "Analysis", items: ["Pandas", "Matplotlib", "Seaborn"] }
+    ],
+    team: [
+      { name: "유재복 (Ash Fortune)", role: "Project Owner / AI Engineer / Lead Dev" }
+    ]
+  },
+  {
     id: 'ai-lawyer',
     category: 'web',
     title: 'AI-Lawyer',

@@ -214,7 +214,7 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
       </div>
       <div className="flex-1 w-full">
         <div className="relative aspect-video bg-black rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-          {videoSrc.match(/\.(mp4|webm|ogg)$/i) ? (
+          {videoSrc.match(/\.(mp4|webm|ogg|mov)$/i) ? (
             <video
               key={videoSrc}
               className="w-full h-full object-contain"
@@ -227,7 +227,7 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
               onPlay={() => setIsPlaying(true)}
               onClick={() => setIsPlaying(!isPlaying)}
             >
-              <source src={videoSrc} type="video/mp4" />
+              <source src={videoSrc} />
             </video>
           ) : (
             <img 
@@ -237,7 +237,7 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
             />
           )}
 
-          {videoSrc.match(/\.(mp4|webm|ogg)$/i) && !isPlaying && false && (
+          {videoSrc.match(/\.(mp4|webm|ogg|mov)$/i) && !isPlaying && false && (
             <div
               className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center cursor-pointer group-hover:bg-black/20 transition-all"
               onClick={() => setIsPlaying(true)}
