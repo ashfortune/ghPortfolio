@@ -34,7 +34,7 @@ export const projects = [
     heroTagline: '메시지 한 줄로 꿰뚫는 상대방의 진심, AI 소통 전문가 CommuniKate',
     heroDescription: 'BERT 기반 딥러닝과 Gemma 4 LLM을 결합하여 메시지 분석, 맞춤형 답변 제안, 실시간 코칭을 제공하는 지능형 소통 솔루션입니다.',
     heroBg: `${baseUrl}assets/projects/mbti/images/hero-bg.png`,
-    githubUrl: 'https://github.com/ashfortune/CommuniKate',
+    githubUrl: 'https://github.com/ashfortune/LLM-MBTI',
     about: 'CommuniKate는 상대방의 메시지를 분석하여 MBTI 성향을 예측하고, 그에 맞는 최적의 대화 전략을 제안하는 서비스입니다. 딥러닝과 LLM의 하이브리드 구조를 통해 분석의 정확도와 추론의 논리성을 모두 확보했습니다.',
     highlights: [
       { icon: Cpu, text: 'BERT & Gemma 4 하이브리드 AI 구조' },
