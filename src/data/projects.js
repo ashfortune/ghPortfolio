@@ -19,10 +19,30 @@ import {
 const baseUrl = import.meta.env.BASE_URL;
 
 export const coreSkills = [
-  { category: 'AI & Data', skills: ['Deep Learning (YOLOv8)', 'Machine Learning (XGBoost)', 'RAG (LangChain4j)', 'Data Visualization'], level: 90 },
-  { category: 'Backend', skills: ['Spring Boot', 'Java', 'Flask', 'Python', 'MySQL/MariaDB', 'PostgreSQL'], level: 85 },
-  { category: 'Frontend', skills: ['React', 'Next.js', 'Nuxt 3', 'Vue 3', 'Tailwind CSS'], level: 80 },
-  { category: 'DevOps & Tools', skills: ['Docker', 'Git/GitHub', 'CI/CD (Actions)', 'Supabase'], level: 75 }
+  { 
+    category: 'AI & Full-Stack Engine', 
+    icon: Cpu,
+    skills: ['Self-Correction LLM Loop', 'RAG (LangChain4j)', 'Deep Learning (YOLOv8)', 'XGBoost Forecasting'], 
+    level: 95 
+  },
+  { 
+    category: 'System Architecture', 
+    icon: Shield,
+    skills: ['MSA (Microservices Architecture)', 'Spring Boot', 'FastAPI', 'Redis Pub/Sub', 'Real-time Trading Engine'], 
+    level: 92 
+  },
+  { 
+    category: 'DevOps & Scalability', 
+    icon: Zap,
+    skills: ['Docker Compose', 'Jenkins CI/CD', 'Supabase Vector DB', 'PostgreSQL PostGIS'], 
+    level: 88 
+  },
+  { 
+    category: 'Frontend & UX Engineering', 
+    icon: Code,
+    skills: ['Next.js 15 (App Router)', 'React 19', 'Tailwind CSS 4', 'Data Visualization (D3.js, Recharts)'], 
+    level: 85 
+  }
 ];
 
 export const projects = [
@@ -30,6 +50,7 @@ export const projects = [
     id: 'communikate',
     category: 'ai',
     title: 'CommuniKate',
+    icon: MessageSquare,
     subtitle: 'MBTI AI 소통 전문가',
     heroTagline: '메시지 한 줄로 꿰뚫는 상대방의 진심, AI 소통 전문가 CommuniKate',
     heroDescription: 'BERT 기반 딥러닝과 Gemma 4 LLM을 결합하여 메시지 분석, 맞춤형 답변 제안, 실시간 코칭을 제공하는 지능형 소통 솔루션입니다.',
@@ -94,6 +115,7 @@ export const projects = [
     id: 'ai-lawyer',
     category: 'web',
     title: 'AI-Lawyer',
+    icon: Shield,
     subtitle: '올라운드 법률 에이전트',
     heroTagline: '어렵고 복잡한 법률 리스크, AI와 함께라면 명확해집니다.',
     heroDescription: '전문적인 계약서 분석부터 실시간 사후 감시까지, 올라운드 법률 에이전트 AI-Lawyer를 소개합니다.',
@@ -176,6 +198,7 @@ export const projects = [
     id: 'stocklab',
     category: 'web',
     title: 'StockLab',
+    icon: BarChart,
     subtitle: '데이터 분석 기반의 올인원 모의 주식 투자 플랫폼',
     heroTagline: 'Investigate & Simulate, Innovate Your Investment',
     heroDescription: '현대적인 웹 환경에서 데이터 분석과 안정적인 주식 매매를 지원하는 플랫폼입니다. Flask의 모듈형 아키텍처와 실시간 통신 기술을 활용하여 사용자에게 직관적이고 강력한 투자 도구를 제공합니다.',
@@ -238,6 +261,7 @@ export const projects = [
     id: 'haruseoul',
     category: 'web',
     title: 'HaruSeoul',
+    icon: MapPin,
     subtitle: '서울의 하루를 특별하게 만드는 로컬 경험',
     heroTagline: '현지인과 함께하는 특별한 서울의 하루',
     heroDescription: '개인 호스트가 기획한 창의적인 투어를 통해 획일화된 여행을 넘어 진짜 서울을 만납니다.',
@@ -296,6 +320,7 @@ export const projects = [
     id: 'food-analyzer',
     category: 'ai',
     title: 'Food Analyzer',
+    icon: Target,
     subtitle: 'YOLOv8 기반의 실시간 음식 인식 및 영양 분석 솔루션',
     heroTagline: '당신의 식탁을 더 스마트하게, 영양까지 꼼꼼하게',
     heroDescription: 'YOLOv8 딥러닝 모델을 활용하여 사진 속 음식을 자동으로 인식하고, 실시간 영양 정보(칼로리, 탄단지)를 분석하여 식단 관리를 돕습니다.',
@@ -360,6 +385,7 @@ export const projects = [
     id: 'house-pricing',
     category: 'ai',
     title: 'Seoul Real Estate Predictor',
+    icon: BarChart,
     subtitle: '서울시 부동산 실거래가 예측 인공지능 엔진',
     heroTagline: '데이터로 예측하는 서울의 내일, 부동산 가치의 재발견',
     heroDescription: '서울시 전역의 실거래 데이터를 XGBoost 알고리즘으로 학습하여, 정밀한 주택 매매가 예측과 핵심 가격 결정 요인 분석을 제공합니다.',
@@ -424,6 +450,7 @@ export const projects = [
     id: 'nexus',
     category: 'web',
     title: 'Nexus',
+    icon: Cpu,
     subtitle: 'All-in-One AI 창업 지원 플랫폼',
     heroTagline: '상권 분석부터 AI 브랜딩까지, 성공적인 창업의 시작',
     heroDescription: '데이터 기반의 상권 분석, 지능형 브랜딩 자산 생성, 맞춤형 정책 추천까지. 예비 창업자를 위한 MSA 기반 올인원 플랫폼입니다.',

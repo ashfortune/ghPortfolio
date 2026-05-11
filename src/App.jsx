@@ -304,18 +304,27 @@ const App = () => {
             <div className="container mx-auto px-6 text-center">
               <h2 className="text-3xl font-bold mb-12">Latest Projects</h2>
               <div className="grid md:grid-cols-3 gap-8">
-                {projects.slice(0, 3).map(proj => (
-                  <div key={proj.id} className="bg-white p-8 rounded-2xl border border-black/5 shadow-sm hover:shadow-xl transition-all text-left cursor-pointer group" onClick={() => setActiveProject(proj)}>
-                    <div className="text-primary mb-4 p-3 bg-primary/5 inline-block rounded-xl group-hover:scale-110 transition-transform">
-                      <Zap size={24} />
+                {[...projects].sort((a, b) => {
+                  // 최신순: Nexus → AI-Lawyer → StockLab 우선 표시
+                  const priority = { nexus: 0, 'ai-lawyer': 1, stocklab: 2 };
+                  const pa = priority[a.id] ?? 99;
+                  const pb = priority[b.id] ?? 99;
+                  return pa - pb;
+                }).slice(0, 3).map(proj => {
+                  const ProjIcon = proj.icon || Zap;
+                  return (
+                    <div key={proj.id} className="bg-white p-8 rounded-2xl border border-black/5 shadow-sm hover:shadow-xl transition-all text-left cursor-pointer group" onClick={() => setActiveProject(proj)}>
+                      <div className="text-primary mb-4 p-3 bg-primary/5 inline-block rounded-xl group-hover:scale-110 transition-transform">
+                        <ProjIcon size={24} />
+                      </div>
+                      <h4 className="text-xl font-bold mb-2">{proj.title}</h4>
+                      <p className="text-text-muted text-sm mb-6 line-clamp-2">{proj.subtitle}</p>
+                      <div className="flex items-center text-primary text-sm font-bold">
+                        상세 보기 <ArrowRight className="ml-2" size={16} />
+                      </div>
                     </div>
-                    <h4 className="text-xl font-bold mb-2">{proj.title}</h4>
-                    <p className="text-text-muted text-sm mb-6 line-clamp-2">{proj.subtitle}</p>
-                    <div className="flex items-center text-primary text-sm font-bold">
-                      상세 보기 <ArrowRight className="ml-2" size={16} />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
