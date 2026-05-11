@@ -452,7 +452,7 @@ export const projects = [
         icon: Search,
         title: 'AI 브랜딩 파이프라인 (Self-Correction)',
         description: 'LLM 기반의 자기 교정 루프를 통해 생성된 상호 및 슬로건의 법적 문제/품질을 자체 검증하고, DALL-E 모델과 연동하여 로고를 실시간으로 제작합니다.',
-        videoSrc: '',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/branding-demo.mp4`,
         poster: '',
         reverse: true
       },
