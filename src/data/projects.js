@@ -419,5 +419,78 @@ export const projects = [
     team: [
       { name: "유재복 (Ashfortune)", role: "Data Analysis / ML Modeling" }
     ]
+  },
+  {
+    id: 'nexus',
+    category: 'web',
+    title: 'Nexus',
+    subtitle: 'All-in-One AI 창업 지원 플랫폼',
+    heroTagline: '상권 분석부터 AI 브랜딩까지, 성공적인 창업의 시작',
+    heroDescription: '데이터 기반의 상권 분석, 지능형 브랜딩 자산 생성, 맞춤형 정책 추천까지. 예비 창업자를 위한 MSA 기반 올인원 플랫폼입니다.',
+    heroBg: `${baseUrl}assets/projects/nexus/images/hero-bg.png`,
+    githubUrl: 'https://github.com/ashfortune',
+    about: 'Nexus는 소상공인과 예비 창업자를 위한 지능형 창업 지원 플랫폼입니다. 단순 정보 제공을 넘어, AI의 Self-Correction 기능을 활용해 브랜드 아이덴티티를 구축하고 데이터 기반 실질적 사업 의사결정을 돕습니다. 확장이 용이한 마이크로 서비스 아키텍처(MSA)를 적용하였습니다.',
+    highlights: [
+      { icon: Cpu, text: 'Next.js + Spring Boot + FastAPI MSA 아키텍처 구축' },
+      { icon: Zap, text: 'LLM Self-Correction Loop 기반의 고품질 AI 브랜딩 파이프라인' },
+      { icon: Search, text: 'PostgreSQL 공간 쿼리 및 시맨틱 검색 엔진 결합' }
+    ],
+    challenges: [
+      {
+        title: 'Jenkins CI/CD 자동화 중 프로세스 수명 주기 충돌 방지',
+        problem: 'Docker 배포 파이프라인 진행 시 기존 컨테이너 종료 실패 및 환경변수 누락으로 인한 빌드 실패 문제 발생.',
+        solution: '.env 기반 환경 변수 중앙화와 Docker Compose 스크립트를 최적화하여 멱등성이 보장된 CI/CD 파이프라인 구축.'
+      },
+      {
+        title: '분산 환경(Spring, FastAPI) 간 외부 스토리지 인증 동기화',
+        problem: '로컬과 프로덕션 배포 간 Supabase 403 Unauthorized 오류 발생.',
+        solution: 'API Key 관리 체계를 단일화하고 요청 헤더(Header) 인증 방식을 일치시켜 멀티 플랫폼 보안 연결 성공.'
+      }
+    ],
+    features: [
+      {
+        icon: Search,
+        title: 'AI 브랜딩 파이프라인 (Self-Correction)',
+        description: 'LLM 기반의 자기 교정 루프를 통해 생성된 상호 및 슬로건의 법적 문제/품질을 자체 검증하고, DALL-E 모델과 연동하여 로고를 실시간으로 제작합니다.',
+        videoSrc: '',
+        poster: '',
+        reverse: true
+      },
+      {
+        icon: MapPin,
+        title: '공공 데이터 기반 창업 시뮬레이션',
+        description: 'PostgreSQL 공간 쿼리 기술을 활용해 특정 지역의 상권(동종 업계 밀집도, 유동 인구)을 분석하고 창업 초기 비용을 정밀하게 산출합니다.',
+        videoSrc: '',
+        poster: ''
+      },
+      {
+        icon: Target,
+        title: 'LLM 임베딩 기반 맞춤형 정책 매칭',
+        description: 'Gemini 모델의 벡터 임베딩을 이용한 시맨틱 검색 기능을 적용, 사용자의 상태에 최적화된 정부 지원금과 정책을 추천해 줍니다.',
+        videoSrc: '',
+        poster: '',
+        reverse: true
+      },
+      {
+        icon: FileText,
+        title: '지능형 고용 관리 지원',
+        description: '예비 창업자를 위해 상황별 맞춤형 표준근로계약서를 PDF 형식으로 즉시 생성할 수 있는 기능을 제공합니다.',
+        videoSrc: '',
+        poster: ''
+      }
+    ],
+    techStack: [
+      { title: "Backend (Core)", items: ["Spring Boot 3.3", "Java 17", "JPA / Hibernate"] },
+      { title: "AI & Data Engine", items: ["FastAPI 1.0", "Python 3.10", "LangChain / RAG"] },
+      { title: "Frontend", items: ["Next.js 16", "React 19", "Tailwind CSS"] },
+      { title: "Infra & DB", items: ["PostgreSQL 16", "Docker Compose", "Supabase", "Jenkins"] }
+    ],
+    team: [
+      { name: "유재복 (PM)", role: "MSA 인프라 구축, AI 브랜딩 엔진, CI/CD" },
+      { name: "탁유제 (PL)", role: "상권 분석 쿼리, AI 모델 학습" },
+      { name: "문광명 (DEV)", role: "사용자 인증, 채팅 시스템" },
+      { name: "최지원 (DEV)", role: "고용/지원금 데이터 가공" },
+      { name: "강민재 (DEV)", role: "매출 시계열 분석 AI" }
+    ]
   }
 ];
