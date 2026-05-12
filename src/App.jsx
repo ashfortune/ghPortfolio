@@ -8,6 +8,7 @@ import {
   X,
   ChevronRight,
   ChevronLeft,
+  ChevronDown,
   UserCheck,
   Zap,
   Shield,
@@ -22,108 +23,152 @@ import { projects, coreSkills } from './data/projects';
 
 const Navbar = ({ projects, activeProject, setActiveProject }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(null);
+  const timeoutRef = React.useRef(null);
+
+  const handleMouseEnter = (menuId) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveMenu(menuId);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveMenu(null);
+    }, 300);
+  };
+
+  // 카테고리별 프로젝트 그룹화
+  const categories = [
+    { id: 'web', label: 'Web Projects', projects: projects.filter(p => p.category === 'web') },
+    { id: 'ai', label: 'AI Projects', projects: projects.filter(p => p.category === 'ai') },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 w-full h-20 flex items-center glass z-50">
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-2 text-2xl font-bold text-text-main">
+        <div 
+          className="flex items-center gap-2 text-2xl font-bold text-text-main cursor-pointer"
+          onClick={() => setActiveProject(null)}
+        >
           <Code className="text-primary" size={32} />
           <span>My Portfolio</span>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6">
-          <div className="flex flex-col items-end mr-4">
-            <span className="text-[10px] text-primary/60 font-bold uppercase tracking-widest mb-1">Web Projects</span>
-            <div className="flex bg-white/5 rounded-full p-1 border border-white/10">
-              {projects.filter(p => p.category === 'web').map((proj) => (
-                <button
-                  key={proj.id}
-                  onClick={() => setActiveProject(proj)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeProject.id === proj.id
-                      ? 'bg-primary text-white shadow-lg'
-                      : 'text-text-muted hover:text-white'
-                    }`}
-                >
-                  {proj.title}
-                </button>
-              ))}
-            </div>
-          </div>
+        <div className="hidden md:flex items-center gap-8">
+          <button 
+            onClick={() => setActiveProject(null)} 
+            className={`text-sm font-bold transition-colors ${!activeProject?.id || activeProject.id === 'home' ? 'text-primary' : 'text-text-muted hover:text-text-main'}`}
+          >
+            Home
+          </button>
 
-          <div className="flex flex-col items-end">
-            <span className="text-[10px] text-purple-400 font-bold uppercase tracking-widest mb-1">AI Projects</span>
-            <div className="flex bg-white/5 rounded-full p-1 border border-white/10">
-              {projects.filter(p => p.category === 'ai').map((proj) => (
-                <button
-                  key={proj.id}
-                  onClick={() => setActiveProject(proj)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${activeProject.id === proj.id
-                      ? 'bg-purple-500 text-white shadow-lg'
-                      : 'text-text-muted hover:text-white'
-                    }`}
-                >
-                  {proj.title}
-                </button>
-              ))}
+          {categories.map((cat) => (
+            <div 
+              key={cat.id} 
+              className="relative group py-4"
+              onMouseEnter={() => handleMouseEnter(cat.id)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className={`flex items-center gap-1 text-sm font-bold transition-colors ${activeProject?.category === cat.id ? 'text-primary' : 'text-text-muted hover:text-text-main'}`}>
+                {cat.label}
+                <ChevronDown size={14} className={`transition-transform duration-300 ${activeMenu === cat.id ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Dropdown Panel */}
+              <div 
+                className={`absolute top-full right-0 mt-0 w-64 bg-white/95 backdrop-blur-xl border border-black/5 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 origin-top-right ${activeMenu === cat.id ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
+                onMouseEnter={() => handleMouseEnter(cat.id)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="p-2">
+                  {cat.projects.map((proj) => (
+                    <button
+                      key={proj.id}
+                      onClick={() => {
+                        setActiveProject(proj);
+                        setActiveMenu(null);
+                      }}
+                      className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between group/item ${activeProject?.id === proj.id ? 'bg-primary/10 text-primary' : 'hover:bg-slate-50 text-text-muted hover:text-text-main'}`}
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-sm font-bold">{proj.title}</span>
+                        <span className="text-[10px] opacity-60 line-clamp-1">{proj.subtitle}</span>
+                      </div>
+                      <ChevronRight size={14} className={`transition-transform ${activeProject?.id === proj.id ? 'translate-x-0' : '-translate-x-2 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100'}`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
           
-          <ul className="flex gap-4 font-medium text-xs ml-4 border-l border-white/10 pl-4">
-            <li><button onClick={() => setActiveProject(null)} className={`hover:text-primary ${!activeProject ? 'text-primary' : ''}`}>Home</button></li>
-          </ul>
+          <button 
+            onClick={() => {
+              const el = document.getElementById('contact');
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="px-5 py-2 bg-primary/10 text-primary text-xs font-bold rounded-full border border-primary/20 hover:bg-primary hover:text-white transition-all"
+          >
+            Contact Me
+          </button>
         </div>
 
         {/* Mobile menu button */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-text-main p-2 hover:bg-slate-100 rounded-lg transition-colors" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-20 left-0 w-full bg-bg-dark/95 backdrop-blur-xl border-b border-white/10 md:hidden animate-fade-in">
-          <div className="p-6 flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-bold text-text-muted uppercase tracking-wider">Navigation</span>
-              <button
-                onClick={() => { setActiveProject(null); setIsOpen(false); }}
-                className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${!activeProject ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
-                  }`}
-              >
-                Home
-                {!activeProject && <ChevronRight size={16} />}
-              </button>
+      <div className={`absolute top-20 left-0 w-full bg-white/95 backdrop-blur-2xl border-b border-black/5 md:hidden transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-[80vh] opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
+        <div className="p-6 flex flex-col gap-8 overflow-y-auto max-h-[calc(80vh-5rem)]">
+          <div className="flex flex-col gap-2">
+            <span className="text-[10px] font-bold text-text-muted uppercase tracking-widest px-2 mb-2">Navigation</span>
+            <button
+              onClick={() => { setActiveProject(null); setIsOpen(false); }}
+              className={`text-left px-4 py-4 rounded-2xl flex items-center justify-between font-bold ${!activeProject?.id || activeProject.id === 'home' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-slate-50 text-text-muted'}`}
+            >
+              Home
+              <ChevronRight size={18} />
+            </button>
 
-              <span className="text-xs font-bold text-primary/80 uppercase tracking-wider mt-4 px-2">Web 프로젝트</span>
-              {projects.filter(p => p.category === 'web').map((proj) => (
-                <button
-                  key={proj.id}
-                  onClick={() => { setActiveProject(proj); setIsOpen(false); }}
-                  className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${activeProject?.id === proj.id ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 border border-white/5'
-                    }`}
-                >
-                  {proj.title}
-                  {activeProject?.id === proj.id && <ChevronRight size={16} />}
-                </button>
-              ))}
-
-              <span className="text-xs font-bold text-purple-400 uppercase tracking-wider mt-4 px-2">AI 프로젝트</span>
-              {projects.filter(p => p.category === 'ai').map((proj) => (
-                <button
-                  key={proj.id}
-                  onClick={() => { setActiveProject(proj); setIsOpen(false); }}
-                  className={`text-left px-4 py-3 rounded-lg flex items-center justify-between ${activeProject?.id === proj.id ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' : 'bg-white/5 border border-white/5'
-                    }`}
-                >
-                  {proj.title}
-                  {activeProject?.id === proj.id && <ChevronRight size={16} />}
-                </button>
-              ))}
+            {categories.map((cat) => (
+              <div key={cat.id} className="mt-4">
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-2 mb-3 block ${cat.id === 'ai' ? 'text-purple-500' : 'text-primary'}`}>
+                  {cat.label}
+                </span>
+                <div className="grid grid-cols-1 gap-2">
+                  {cat.projects.map((proj) => (
+                    <button
+                      key={proj.id}
+                      onClick={() => { setActiveProject(proj); setIsOpen(false); }}
+                      className={`text-left px-4 py-3 rounded-xl flex items-center justify-between border transition-all ${activeProject?.id === proj.id ? 'border-primary/30 bg-primary/5 text-primary' : 'border-transparent bg-slate-50 text-text-muted'}`}
+                    >
+                      <div>
+                        <div className="text-sm font-bold">{proj.title}</div>
+                        <div className="text-[10px] opacity-60">{proj.subtitle}</div>
+                      </div>
+                      <ChevronRight size={14} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="pt-4 border-t border-black/5 flex justify-center">
+            <div className="flex gap-6">
+              <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-all hover:scale-110">
+                <Github size={24} />
+              </a>
+              <a href="mailto:yjb152188@gmail.com" className="text-text-muted hover:text-primary transition-all hover:scale-110">
+                <Mail size={24} />
+              </a>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
@@ -441,18 +486,22 @@ const App = () => {
       )}
 
       {/* Footer */}
-      <footer className="py-16 border-t border-black/5 text-center text-text-muted text-sm bg-white">
+      <footer id="contact" className="py-24 border-t border-black/5 text-center text-text-muted text-sm bg-slate-50">
         <div className="container mx-auto px-6">
-          <p className="mb-2">&copy; 2026 {activeProject ? activeProject.title : "Ashfortune"} Team. All rights reserved.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6">
-            <p className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Mail size={16} />
-              yjb152188@gmail.com
-            </p>
-            <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors group">
-              <Github size={16} className="group-hover:text-primary transition-colors" />
-              github.com/ashfortune
+          <p className="mb-4 text-text-main font-bold text-lg">함께 혁신을 만들어갈 준비가 되셨나요?</p>
+          <p className="mb-8 max-w-md mx-auto">언제든 연락 주십시오. 대표님의 비즈니스 가치를 높이는 최고의 솔루션을 제안해 드리겠습니다.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-8">
+            <a href="mailto:yjb152188@gmail.com" className="flex items-center gap-3 px-6 py-3 bg-white rounded-2xl border border-black/5 hover:border-primary/30 hover:text-primary transition-all shadow-sm group">
+              <Mail size={20} className="group-hover:scale-110 transition-transform" />
+              <span className="font-medium text-base">yjb152188@gmail.com</span>
             </a>
+            <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 bg-white rounded-2xl border border-black/5 hover:border-primary/30 hover:text-primary transition-all shadow-sm group">
+              <Github size={20} className="group-hover:scale-110 transition-transform" />
+              <span className="font-medium text-base">github.com/ashfortune</span>
+            </a>
+          </div>
+          <div className="pt-8 border-t border-black/5 opacity-60">
+            <p>&copy; 2026 {activeProject ? activeProject.title : "Ashfortune"} Team. All rights reserved.</p>
           </div>
         </div>
       </footer>

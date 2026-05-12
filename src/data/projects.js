@@ -455,7 +455,7 @@ export const projects = [
     heroTagline: '상권 분석부터 AI 브랜딩까지, 성공적인 창업의 시작',
     heroDescription: '데이터 기반의 상권 분석, 지능형 브랜딩 자산 생성, 맞춤형 정책 추천까지. 예비 창업자를 위한 MSA 기반 올인원 플랫폼입니다.',
     heroBg: `${baseUrl}assets/projects/nexus/images/hero-bg.png`,
-    githubUrl: 'https://github.com/ashfortune',
+    githubUrl: 'https://github.com/ashfortune/nexus',
     about: 'Nexus는 소상공인과 예비 창업자를 위한 지능형 창업 지원 플랫폼입니다. 단순 정보 제공을 넘어, AI의 Self-Correction 기능을 활용해 브랜드 아이덴티티를 구축하고 데이터 기반 실질적 사업 의사결정을 돕습니다. 확장이 용이한 마이크로 서비스 아키텍처(MSA)를 적용하였습니다.',
     highlights: [
       { icon: Cpu, text: 'Next.js + Spring Boot + FastAPI MSA 아키텍처 구축' },
