@@ -19,29 +19,29 @@ import {
 const baseUrl = import.meta.env.BASE_URL;
 
 export const coreSkills = [
-  { 
-    category: 'AI & Full-Stack Engine', 
+  {
+    category: 'AI & Full-Stack Engine',
     icon: Cpu,
-    skills: ['Self-Correction LLM Loop', 'RAG (LangChain4j)', 'Deep Learning (YOLOv8)', 'XGBoost Forecasting'], 
-    level: 95 
+    skills: ['Self-Correction LLM Loop', 'RAG (LangChain4j)', 'Deep Learning (YOLOv8)', 'XGBoost Forecasting'],
+    level: 95
   },
-  { 
-    category: 'System Architecture', 
+  {
+    category: 'System Architecture',
     icon: Shield,
-    skills: ['MSA (Microservices Architecture)', 'Spring Boot', 'FastAPI', 'Redis Pub/Sub', 'Real-time Trading Engine'], 
-    level: 92 
+    skills: ['MSA (Microservices Architecture)', 'Spring Boot', 'FastAPI', 'Redis Pub/Sub', 'Real-time Trading Engine'],
+    level: 92
   },
-  { 
-    category: 'DevOps & Scalability', 
+  {
+    category: 'DevOps & Scalability',
     icon: Zap,
-    skills: ['Docker Compose', 'Jenkins CI/CD', 'Supabase Vector DB', 'PostgreSQL PostGIS'], 
-    level: 88 
+    skills: ['Docker Compose', 'Jenkins CI/CD', 'Supabase Vector DB', 'PostgreSQL PostGIS'],
+    level: 88
   },
-  { 
-    category: 'Frontend & UX Engineering', 
+  {
+    category: 'Frontend & UX Engineering',
     icon: Code,
-    skills: ['Next.js 15 (App Router)', 'React 19', 'Tailwind CSS 4', 'Data Visualization (D3.js, Recharts)'], 
-    level: 85 
+    skills: ['Next.js 15 (App Router)', 'React 19', 'Tailwind CSS 4', 'Data Visualization (D3.js, Recharts)'],
+    level: 85
   }
 ];
 
@@ -451,73 +451,81 @@ export const projects = [
     category: 'web',
     title: 'Nexus',
     icon: Cpu,
-    subtitle: 'All-in-One AI 창업 지원 플랫폼',
-    heroTagline: '상권 분석부터 AI 브랜딩까지, 성공적인 창업의 시작',
-    heroDescription: '데이터 기반의 상권 분석, 지능형 브랜딩 자산 생성, 맞춤형 정책 추천까지. 예비 창업자를 위한 MSA 기반 올인원 플랫폼입니다.',
+    subtitle: 'High-End AI & Data-Driven Startup Intelligence Platform',
+    heroTagline: 'AI 기반 상권 분석부터 기반 브랜딩까지, 성공적인 창업의 모든 것',
+    heroDescription: 'Gemma-4-31b 기반 고성능 추론, CLIP 모델을 이용한 디자인 정량적 검증, 그리고 XGBoost/CatBoost 기반의 정밀 생존 예측을 제공하는 MSA 올인원 플랫폼입니다.',
     heroBg: `${baseUrl}assets/projects/nexus/images/hero-bg.png`,
     githubUrl: 'https://github.com/ashfortune/nexus',
-    about: 'Nexus는 소상공인과 예비 창업자를 위한 지능형 창업 지원 플랫폼입니다. 단순 정보 제공을 넘어, AI의 Self-Correction 기능을 활용해 브랜드 아이덴티티를 구축하고 데이터 기반 실질적 사업 의사결정을 돕습니다. 확장이 용이한 마이크로 서비스 아키텍처(MSA)를 적용하였습니다.',
+    about: 'Nexus는 소상공인과 예비 창업자를 위한 지능형 창업 지원 플랫폼입니다. Gemma-4-31b 모델을 통해 브랜드 아이덴티티를 구축하고, CLIP 기반 Alignment Score로 디자인 품질을 정량화하며, 데이터 기반의 실질적인 사업 리스크 관리(XGBoost/CatBoost)를 지원합니다.',
     highlights: [
-      { icon: Cpu, text: 'Next.js + Spring Boot + FastAPI MSA 아키텍처 구축' },
-      { icon: Zap, text: 'LLM Self-Correction Loop 기반의 고품질 AI 브랜딩 파이프라인' },
-      { icon: Search, text: 'PostgreSQL 공간 쿼리 및 시맨틱 검색 엔진 결합' }
+      { icon: Cpu, text: 'Gemma-4-31b 기반의 고성능 LLM 추론 파이프라인 설계' },
+      { icon: Zap, text: 'CLIP 기반 정량적 검증 수식을 통한 AI 디자인 품질 보증' },
+      { icon: Shield, text: 'KIPRIS API 연동을 통한 브랜딩 에셋의 법적 안정성 확보' }
     ],
     challenges: [
       {
-        title: 'Jenkins CI/CD 자동화 중 프로세스 수명 주기 충돌 방지',
-        problem: 'Docker 배포 파이프라인 진행 시 기존 컨테이너 종료 실패 및 환경변수 누락으로 인한 빌드 실패 문제 발생.',
-        solution: '.env 기반 환경 변수 중앙화와 Docker Compose 스크립트를 최적화하여 멱등성이 보장된 CI/CD 파이프라인 구축.'
+        title: 'Jenkins CI/CD 자동화 및 Nginx 리버스 프록시 최적화',
+        problem: 'MSA 환경에서 다수 컨테이너 배포 시 환경 변수 누락 및 라우팅 충돌로 인한 서비스 다운타임 발생.',
+        solution: 'Jenkins 파이프라인을 통한 Secrets 중앙 관리와 Nginx Reverse Proxy 설정을 고도화하여 무중단 배포 및 안전한 외부 라우팅 구현.'
       },
       {
-        title: '분산 환경(Spring, FastAPI) 간 외부 스토리지 인증 동기화',
-        problem: '로컬과 프로덕션 배포 간 Supabase 403 Unauthorized 오류 발생.',
-        solution: 'API Key 관리 체계를 단일화하고 요청 헤더(Header) 인증 방식을 일치시켜 멀티 플랫폼 보안 연결 성공.'
+        title: 'AI 에이전트 통제 및 팀 기술 컨벤션 유지 (PM)',
+        problem: 'AI 코딩 어시스턴트 활용 시 발생하는 코드 스타일 파편화 및 기술 병목 구간의 리소스 효율성 저하.',
+        solution: '.ai-rules.md 가이드를 수립하여 에이전트를 엄격히 통제하고, WBS 기반의 전략적 인력 배치를 통해 기술 병목을 해결하여 데드라인 내 완수.'
       }
     ],
     features: [
       {
         icon: Search,
-        title: 'AI 브랜딩 파이프라인 (Self-Correction)',
-        description: 'LLM 기반의 자기 교정 루프를 통해 생성된 상호 및 슬로건의 법적 문제/품질을 자체 검증하고, DALL-E 모델과 연동하여 로고를 실시간으로 제작합니다.',
+        title: 'Gemma-4 기반 AI 브랜딩 파이프라인',
+        description: 'Gemma-4-31b 모델과 CLIP 알고리즘을 결합하여 로고와 키워드 간의 일치도를 정량적으로 검증합니다. KIPRIS API와 연동된 Self-Correction Loop를 통해 법적 리스크가 제거된 브랜드 에셋을 생성합니다.',
         videoSrc: `${baseUrl}assets/projects/nexus/videos/branding-demo.mp4`,
         poster: '',
         reverse: true
       },
       {
         icon: MapPin,
-        title: '공공 데이터 기반 창업 시뮬레이션',
-        description: 'PostgreSQL 공간 쿼리 기술을 활용해 특정 지역의 상권(동종 업계 밀집도, 유동 인구)을 분석하고 창업 초기 비용을 정밀하게 산출합니다.',
-        videoSrc: '',
+        title: 'XGBoost 기반 정밀 상권 분석',
+        description: '서울시 25개 자치구의 공공 데이터를 XGBoost 및 CatBoost 모델로 학습하여 창업 생존 확률을 예측하고, 히트맵 기반의 상권 밀집도 분석을 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/marketing-analysis.mp4`,
         poster: ''
       },
       {
         icon: Target,
-        title: 'LLM 임베딩 기반 맞춤형 정책 매칭',
-        description: 'Gemini 모델의 벡터 임베딩을 이용한 시맨틱 검색 기능을 적용, 사용자의 상태에 최적화된 정부 지원금과 정책을 추천해 줍니다.',
-        videoSrc: '',
+        title: '창업 비용 및 손익 시뮬레이션',
+        description: '임대료, 인건비 등 변동 상수를 적용한 정밀 시뮬레이션을 통해 창업 초기 비용을 산출하고 미래 수익성을 예측합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/simulation.mp4`,
         poster: '',
         reverse: true
       },
       {
         icon: FileText,
-        title: '지능형 고용 관리 지원',
-        description: '예비 창업자를 위해 상황별 맞춤형 표준근로계약서를 PDF 형식으로 즉시 생성할 수 있는 기능을 제공합니다.',
-        videoSrc: '',
+        title: '지능형 정책 매칭 및 업종 전환 가이드',
+        description: 'RAG 아키텍처를 활용해 사용자 맞춤형 정책을 추천하고, 앙상블 유사도 모델을 통해 기존 설비를 활용한 최적의 업종 전환(Pivot) 전략을 제안합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/subsidy-compliance-changing_industry.mp4`,
         poster: ''
+      },
+      {
+        icon: LayoutDashboard,
+        title: '실시간 통합 관리 대시보드',
+        description: '매출 시계열 분석 및 고객 리뷰 감성 분석 결과를 시각화하여 사업 운영에 필요한 핵심 인사이트를 실시간으로 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/dashboard.mp4`,
+        poster: '',
+        reverse: true
       }
     ],
     techStack: [
-      { title: "Backend (Core)", items: ["Spring Boot 3.3", "Java 17", "JPA / Hibernate"] },
-      { title: "AI & Data Engine", items: ["FastAPI 1.0", "Python 3.10", "LangChain / RAG"] },
-      { title: "Frontend", items: ["Next.js 16", "React 19", "Tailwind CSS"] },
-      { title: "Infra & DB", items: ["PostgreSQL 16", "Docker Compose", "Supabase", "Jenkins"] }
+      { title: "AI & ML Engine", items: ["Gemma-4-31b (Gemini API)", "XGBoost", "CatBoost", "CLIP Model"] },
+      { title: "Backend (MSA)", items: ["Spring Boot 3.3", "FastAPI", "JPA", "pgvector"] },
+      { title: "Frontend", items: ["Next.js 16", "React 19", "Tailwind CSS", "Lucide React"] },
+      { title: "DevOps & Infra", items: ["Nginx (Reverse Proxy)", "Jenkins", "GitHub Actions", "Docker Compose"] }
     ],
     team: [
-      { name: "유재복 (PM)", role: "MSA 인프라 구축, AI 브랜딩 엔진, CI/CD" },
-      { name: "탁유제 (PL)", role: "상권 분석 쿼리, AI 모델 학습" },
-      { name: "문광명 (DEV)", role: "사용자 인증, 채팅 시스템" },
-      { name: "최지원 (DEV)", role: "고용/지원금 데이터 가공" },
-      { name: "강민재 (DEV)", role: "매출 시계열 분석 AI" }
+      { name: "유재복 (PM)", role: "MSA 아키텍처 설계, AI 브랜딩/인프라 구축, CI/CD 자동화" },
+      { name: "탁유제 (PL)", role: "상권 분석 쿼리, 모델 학습 및 검증, WBS 관리" },
+      { name: "문광명 (DEV)", role: "인증 시스템, 커뮤니티, 전문가 매칭 구축" },
+      { name: "최지원 (DEV)", role: "공공 데이터 수집 및 가공, 테스트 케이스(TC) 작성" },
+      { name: "강민재 (DEV)", role: "매출 시계열 분석 AI, 대시보드 시각화" }
     ]
   }
 ];
