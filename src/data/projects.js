@@ -13,39 +13,86 @@ import {
   Cpu,
   BarChart,
   Target,
-  Search
+  Search,
+  Users
 } from 'lucide-react';
 
 const baseUrl = import.meta.env.BASE_URL;
 
 export const coreSkills = [
   {
-    category: 'AI & Full-Stack Engine',
+    category: 'AI & Machine Learning',
     icon: Cpu,
-    skills: ['Self-Correction LLM Loop', 'RAG (LangChain4j)', 'Deep Learning (YOLOv8)', 'XGBoost Forecasting'],
-    level: 95
+    skills: ['LLM', 'LangChain', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'RAG', 'YOLOv8', 'XGBoost']
   },
   {
-    category: 'System Architecture',
+    category: 'Backend & Database',
     icon: Shield,
-    skills: ['MSA (Microservices Architecture)', 'Spring Boot', 'FastAPI', 'Redis Pub/Sub', 'Real-time Trading Engine'],
-    level: 92
+    skills: ['Java', 'Spring Boot', 'Spring Framework', 'Spring Security', 'Spring MVC', 'Spring Data JPA', 'MyBatis', 'FastAPI', 'PostgreSQL', 'MariaDB', 'Redis']
   },
   {
-    category: 'DevOps & Scalability',
-    icon: Zap,
-    skills: ['Docker Compose', 'Jenkins CI/CD', 'Supabase Vector DB', 'PostgreSQL PostGIS'],
-    level: 88
-  },
-  {
-    category: 'Frontend & UX Engineering',
+    category: 'Frontend & Languages',
     icon: Code,
-    skills: ['Next.js 15 (App Router)', 'React 19', 'Tailwind CSS 4', 'Data Visualization (D3.js, Recharts)'],
-    level: 85
+    skills: ['JavaScript', 'Python', 'Next.js', 'Nuxt.js']
+  },
+  {
+    category: 'DevOps & Systems',
+    icon: Zap,
+    skills: ['Docker', 'Jenkins', 'GitHub Actions', 'GitHub Pages', 'Linux', 'WSL']
   }
 ];
 
 export const projects = [
+  {
+    id: 'ai-council',
+    category: 'ai',
+    title: 'AI-Council',
+    icon: Users,
+    subtitle: '멀티 에이전트 기반 자율 토론 및 의사결정 플랫폼',
+    heroTagline: '단일 LLM의 편향을 넘어, 멀티 에이전트 협업으로 도출하는 최적의 의사결정',
+    heroDescription: '사업총괄(CBO)과 기술총괄(CTO) 등 상반된 관점을 가진 AI 전문가들이 LangGraph 기반으로 자율 토론(티키타카)을 펼치고, 중재자(Moderator)가 합의를 이끌어내는 고도화된 풀스택 AI 플랫폼입니다.',
+    heroBg: `${baseUrl}assets/projects/ai-council/hero-bg.png`,
+    githubUrl: 'https://github.com/ashfortune/AI-Council',
+    about: 'AI-Council은 기업의 중요한 의사결정 안건에 대해 다양한 페르소나를 가진 에이전트들이 실시간으로 토론하여 합리적인 결론을 낼 수 있도록 돕습니다. 과거 유사 이력을 RAG로 실시간 참조하며, LangGraph의 astream_events 스트리밍을 통해 사용자가 토론 과정을 투명하게 모니터링할 수 있습니다.',
+    highlights: [
+      { icon: Cpu, text: 'LangGraph 기반 Multi-Agent 토론 및 의장 중재 아키텍처' },
+      { icon: Zap, text: 'astream_events 활용 비동기 실시간 스트리밍 및 즉시 제어' },
+      { icon: Shield, text: '유사 의사결정 이력 자동 조회 RAG & Vector DB 통합' }
+    ],
+    challenges: [
+      {
+        title: '실시간 스트리밍 시 다중 에이전트 턴 제어 및 UX 유지',
+        problem: '동기적 API 호출 방식은 여러 에이전트의 복잡한 토론 과정이 끝날 때까지 대기 시간이 길어 사용자 이탈을 유발함.',
+        solution: 'FastAPI와 LangGraph의 astream_events 비동기 이벤트를 활용하여 각 에이전트가 생성하는 생각과 발화를 청크 단위로 즉시 UI에 스트리밍하고, Abort Controller를 구현해 사용자가 토론을 실시간으로 취소하고 즉시 복구할 수 있도록 하여 제어권을 보장함.'
+      }
+    ],
+    features: [
+      {
+        icon: MessageSquare,
+        title: 'LangGraph 기반 자율 토론 (Tiki-Taka Debate)',
+        description: '사업총괄(Proposer/CBO)과 기술총괄(Critic/CTO) 등 서로 다른 페르소나를 가진 에이전트들이 제안된 안건의 사업성과 기술적 실현 가능성을 두고 날카롭게 토론합니다. 프론트엔드 UI를 통해 에이전트의 역할과 지침을 자유롭게 커스텀할 수 있습니다.',
+        videoSrc: `${baseUrl}assets/projects/ai-council/ai-council.mp4`,
+        poster: `${baseUrl}assets/projects/ai-council/hero-bg.png`,
+        reverse: true
+      },
+      {
+        icon: UserCheck,
+        title: '의장(Moderator)의 자율 합의 판별 및 요약',
+        description: '토론의 흐름을 상시 모니터링하는 중재자 에이전트가 맥락을 분석하여 상호 합의 도달 여부를 판별합니다. 토론이 종료되면 최종 요약 에이전트가 구체적인 의사결정 보고서와 실현 가능한 액션 플랜을 도출합니다.',
+        videoSrc: '',
+        poster: `${baseUrl}assets/projects/ai-council/hero-bg.png`
+      }
+    ],
+    techStack: [
+      { title: "AI Framework", items: ["LangGraph", "LangChain", "FastAPI"] },
+      { title: "LLM & RAG", items: ["Google Gemini (2.5 Flash / 3.1 Flash Lite)", "Ollama (Gemma 4)", "Vector DB"] },
+      { title: "Frontend", items: ["Next.js 19", "React 19", "Tailwind CSS", "Lucide React"] },
+      { title: "DevOps & Infra", items: ["Docker Compose", "Jenkins CI/CD", "Nginx"] }
+    ],
+    team: [
+      { name: "유재복 (Ash Fortune)", role: "PM / Lead Developer / AI System Architect" }
+    ]
+  },
   {
     id: 'communikate',
     category: 'ai',
@@ -109,6 +156,88 @@ export const projects = [
     ],
     team: [
       { name: "유재복 (Ash Fortune)", role: "Project Owner / AI Engineer / Lead Dev" }
+    ]
+  },
+  {
+    id: 'nexus',
+    category: 'web',
+    title: 'Nexus',
+    icon: Cpu,
+    subtitle: 'High-End AI & Data-Driven Startup Intelligence Platform',
+    heroTagline: 'AI 기반 상권 분석부터 기반 브랜딩까지, 성공적인 창업의 모든 것',
+    heroDescription: 'Gemma-4-31b 기반 고성능 추론, CLIP 모델을 이용한 디자인 정량적 검증, 그리고 XGBoost/CatBoost 기반의 정밀 생존 예측을 제공하는 MSA 올인원 플랫폼입니다.',
+    heroBg: `${baseUrl}assets/projects/nexus/images/hero-bg.png`,
+    githubUrl: 'https://github.com/ashfortune/nexus',
+    about: 'Nexus는 소상공인과 예비 창업자를 위한 지능형 창업 지원 플랫폼입니다. Gemma-4-31b 모델을 통해 브랜드 아이덴티티를 구축하고, CLIP 기반 Alignment Score로 디자인 품질을 정량화하며, 데이터 기반의 실질적인 사업 리스크 관리(XGBoost/CatBoost)를 지원합니다.',
+    highlights: [
+      { icon: Cpu, text: 'Gemma-4-31b 기반의 고성능 LLM 추론 파이프라인 설계' },
+      { icon: Zap, text: 'CLIP 기반 정량적 검증 수식을 통한 AI 디자인 품질 보증' },
+      { icon: Shield, text: 'KIPRIS API 연동을 통한 브랜딩 에셋의 법적 안정성 확보' }
+    ],
+    challenges: [
+      {
+        title: 'Jenkins CI/CD 자동화 및 Nginx 리버스 프록시 최적화',
+        problem: 'MSA 환경에서 다수 컨테이너 배포 시 환경 변수 누락 및 라우팅 충돌로 인한 서비스 다운타임 발생.',
+        solution: 'Jenkins 파이프라인을 통한 Secrets 중앙 관리와 Nginx Reverse Proxy 설정을 고도화하여 무중단 배포 및 안전한 외부 라우팅 구현.'
+      },
+      {
+        title: 'AI 에이전트 통제 및 팀 기술 컨벤션 유지 (PM)',
+        problem: 'AI 코딩 어시스턴트 활용 시 발생하는 코드 스타일 파편화 및 기술 병목 구간의 리소스 효율성 저하.',
+        solution: '.ai-rules.md 가이드를 수립하여 에이전트를 엄격히 통제하고, WBS 기반의 전략적 인력 배치를 통해 기술 병목을 해결하여 데드라인 내 완수.'
+      }
+    ],
+    features: [
+      {
+        icon: Search,
+        title: 'Gemma-4 기반 AI 브랜딩 파이프라인',
+        description: 'Gemma-4-31b 모델과 CLIP 알고리즘을 결합하여 로고와 키워드 간의 일치도를 정량적으로 검증합니다. KIPRIS API와 연동된 Self-Correction Loop를 통해 법적 리스크가 제거된 브랜드 에셋을 생성합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/branding-demo.mp4`,
+        poster: '',
+        reverse: true
+      },
+      {
+        icon: MapPin,
+        title: 'XGBoost 기반 정밀 상권 분석',
+        description: '서울시 25개 자치구의 공공 데이터를 XGBoost 및 CatBoost 모델로 학습하여 창업 생존 확률을 예측하고, 히트맵 기반의 상권 밀집도 분석을 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/marketing-analysis.mp4`,
+        poster: ''
+      },
+      {
+        icon: Target,
+        title: '창업 비용 및 손익 시뮬레이션',
+        description: '임대료, 인건비 등 변동 상수를 적용한 정밀 시뮬레이션을 통해 창업 초기 비용을 산출하고 미래 수익성을 예측합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/simulation.mp4`,
+        poster: '',
+        reverse: true
+      },
+      {
+        icon: FileText,
+        title: '지능형 정책 매칭 및 업종 전환 가이드',
+        description: 'RAG 아키텍처를 활용해 사용자 맞춤형 정책을 추천하고, 앙상블 유사도 모델을 통해 기존 설비를 활용한 최적의 업종 전환(Pivot) 전략을 제안합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/subsidy-compliance-changing_industry.mp4`,
+        poster: ''
+      },
+      {
+        icon: LayoutDashboard,
+        title: '실시간 통합 관리 대시보드',
+        description: '매출 시계열 분석 및 고객 리뷰 감성 분석 결과를 시각화하여 사업 운영에 필요한 핵심 인사이트를 실시간으로 제공합니다.',
+        videoSrc: `${baseUrl}assets/projects/nexus/videos/dashboard.mp4`,
+        poster: '',
+        reverse: true
+      }
+    ],
+    techStack: [
+      { title: "AI & ML Engine", items: ["Gemma-4-31b (Gemini API)", "XGBoost", "CatBoost", "CLIP Model"] },
+      { title: "Backend (MSA)", items: ["Spring Boot 3.3", "FastAPI", "JPA", "pgvector"] },
+      { title: "Frontend", items: ["Next.js 16", "React 19", "Tailwind CSS", "Lucide React"] },
+      { title: "DevOps & Infra", items: ["Nginx (Reverse Proxy)", "Jenkins", "GitHub Actions", "Docker Compose"] }
+    ],
+    team: [
+      { name: "유재복 (PM)", role: "MSA 아키측쳐 설계, AI 브랜딩/인프라 구축, CI/CD 자동화" },
+      { name: "탁유제 (PL)", role: "상권 분석 쿼리, 모델 학습 및 검증, WBS 관리" },
+      { name: "문광명 (DEV)", role: "인증 시스템, 커뮤니티, 전문가 매칭 구축" },
+      { name: "최지원 (DEV)", role: "공공 데이터 수집 및 가공, 테스트 케이스(TC) 작성" },
+      { name: "강민재 (DEV)", role: "매출 시계열 분석 AI, 대시보드 시각화" }
     ]
   },
   {
@@ -444,88 +573,6 @@ export const projects = [
     ],
     team: [
       { name: "유재복 (Ashfortune)", role: "Data Analysis / ML Modeling" }
-    ]
-  },
-  {
-    id: 'nexus',
-    category: 'web',
-    title: 'Nexus',
-    icon: Cpu,
-    subtitle: 'High-End AI & Data-Driven Startup Intelligence Platform',
-    heroTagline: 'AI 기반 상권 분석부터 기반 브랜딩까지, 성공적인 창업의 모든 것',
-    heroDescription: 'Gemma-4-31b 기반 고성능 추론, CLIP 모델을 이용한 디자인 정량적 검증, 그리고 XGBoost/CatBoost 기반의 정밀 생존 예측을 제공하는 MSA 올인원 플랫폼입니다.',
-    heroBg: `${baseUrl}assets/projects/nexus/images/hero-bg.png`,
-    githubUrl: 'https://github.com/ashfortune/nexus',
-    about: 'Nexus는 소상공인과 예비 창업자를 위한 지능형 창업 지원 플랫폼입니다. Gemma-4-31b 모델을 통해 브랜드 아이덴티티를 구축하고, CLIP 기반 Alignment Score로 디자인 품질을 정량화하며, 데이터 기반의 실질적인 사업 리스크 관리(XGBoost/CatBoost)를 지원합니다.',
-    highlights: [
-      { icon: Cpu, text: 'Gemma-4-31b 기반의 고성능 LLM 추론 파이프라인 설계' },
-      { icon: Zap, text: 'CLIP 기반 정량적 검증 수식을 통한 AI 디자인 품질 보증' },
-      { icon: Shield, text: 'KIPRIS API 연동을 통한 브랜딩 에셋의 법적 안정성 확보' }
-    ],
-    challenges: [
-      {
-        title: 'Jenkins CI/CD 자동화 및 Nginx 리버스 프록시 최적화',
-        problem: 'MSA 환경에서 다수 컨테이너 배포 시 환경 변수 누락 및 라우팅 충돌로 인한 서비스 다운타임 발생.',
-        solution: 'Jenkins 파이프라인을 통한 Secrets 중앙 관리와 Nginx Reverse Proxy 설정을 고도화하여 무중단 배포 및 안전한 외부 라우팅 구현.'
-      },
-      {
-        title: 'AI 에이전트 통제 및 팀 기술 컨벤션 유지 (PM)',
-        problem: 'AI 코딩 어시스턴트 활용 시 발생하는 코드 스타일 파편화 및 기술 병목 구간의 리소스 효율성 저하.',
-        solution: '.ai-rules.md 가이드를 수립하여 에이전트를 엄격히 통제하고, WBS 기반의 전략적 인력 배치를 통해 기술 병목을 해결하여 데드라인 내 완수.'
-      }
-    ],
-    features: [
-      {
-        icon: Search,
-        title: 'Gemma-4 기반 AI 브랜딩 파이프라인',
-        description: 'Gemma-4-31b 모델과 CLIP 알고리즘을 결합하여 로고와 키워드 간의 일치도를 정량적으로 검증합니다. KIPRIS API와 연동된 Self-Correction Loop를 통해 법적 리스크가 제거된 브랜드 에셋을 생성합니다.',
-        videoSrc: `${baseUrl}assets/projects/nexus/videos/branding-demo.mp4`,
-        poster: '',
-        reverse: true
-      },
-      {
-        icon: MapPin,
-        title: 'XGBoost 기반 정밀 상권 분석',
-        description: '서울시 25개 자치구의 공공 데이터를 XGBoost 및 CatBoost 모델로 학습하여 창업 생존 확률을 예측하고, 히트맵 기반의 상권 밀집도 분석을 제공합니다.',
-        videoSrc: `${baseUrl}assets/projects/nexus/videos/marketing-analysis.mp4`,
-        poster: ''
-      },
-      {
-        icon: Target,
-        title: '창업 비용 및 손익 시뮬레이션',
-        description: '임대료, 인건비 등 변동 상수를 적용한 정밀 시뮬레이션을 통해 창업 초기 비용을 산출하고 미래 수익성을 예측합니다.',
-        videoSrc: `${baseUrl}assets/projects/nexus/videos/simulation.mp4`,
-        poster: '',
-        reverse: true
-      },
-      {
-        icon: FileText,
-        title: '지능형 정책 매칭 및 업종 전환 가이드',
-        description: 'RAG 아키텍처를 활용해 사용자 맞춤형 정책을 추천하고, 앙상블 유사도 모델을 통해 기존 설비를 활용한 최적의 업종 전환(Pivot) 전략을 제안합니다.',
-        videoSrc: `${baseUrl}assets/projects/nexus/videos/subsidy-compliance-changing_industry.mp4`,
-        poster: ''
-      },
-      {
-        icon: LayoutDashboard,
-        title: '실시간 통합 관리 대시보드',
-        description: '매출 시계열 분석 및 고객 리뷰 감성 분석 결과를 시각화하여 사업 운영에 필요한 핵심 인사이트를 실시간으로 제공합니다.',
-        videoSrc: `${baseUrl}assets/projects/nexus/videos/dashboard.mp4`,
-        poster: '',
-        reverse: true
-      }
-    ],
-    techStack: [
-      { title: "AI & ML Engine", items: ["Gemma-4-31b (Gemini API)", "XGBoost", "CatBoost", "CLIP Model"] },
-      { title: "Backend (MSA)", items: ["Spring Boot 3.3", "FastAPI", "JPA", "pgvector"] },
-      { title: "Frontend", items: ["Next.js 16", "React 19", "Tailwind CSS", "Lucide React"] },
-      { title: "DevOps & Infra", items: ["Nginx (Reverse Proxy)", "Jenkins", "GitHub Actions", "Docker Compose"] }
-    ],
-    team: [
-      { name: "유재복 (PM)", role: "MSA 아키텍처 설계, AI 브랜딩/인프라 구축, CI/CD 자동화" },
-      { name: "탁유제 (PL)", role: "상권 분석 쿼리, 모델 학습 및 검증, WBS 관리" },
-      { name: "문광명 (DEV)", role: "인증 시스템, 커뮤니티, 전문가 매칭 구축" },
-      { name: "최지원 (DEV)", role: "공공 데이터 수집 및 가공, 테스트 케이스(TC) 작성" },
-      { name: "강민재 (DEV)", role: "매출 시계열 분석 AI, 대시보드 시각화" }
     ]
   }
 ];

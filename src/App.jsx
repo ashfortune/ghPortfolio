@@ -46,7 +46,7 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
   return (
     <nav className="fixed top-0 left-0 w-full h-20 flex items-center glass z-50">
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <div 
+        <div
           className="flex items-center gap-2 text-2xl font-bold text-text-main cursor-pointer"
           onClick={() => setActiveProject(null)}
         >
@@ -56,16 +56,16 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <button 
-            onClick={() => setActiveProject(null)} 
+          <button
+            onClick={() => setActiveProject(null)}
             className={`text-sm font-bold transition-colors ${!activeProject?.id || activeProject.id === 'home' ? 'text-primary' : 'text-text-muted hover:text-text-main'}`}
           >
             Home
           </button>
 
           {categories.map((cat) => (
-            <div 
-              key={cat.id} 
+            <div
+              key={cat.id}
               className="relative group py-4"
               onMouseEnter={() => handleMouseEnter(cat.id)}
               onMouseLeave={handleMouseLeave}
@@ -74,9 +74,9 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
                 {cat.label}
                 <ChevronDown size={14} className={`transition-transform duration-300 ${activeMenu === cat.id ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {/* Dropdown Panel */}
-              <div 
+              <div
                 className={`absolute top-full right-0 mt-0 w-64 bg-white/95 backdrop-blur-xl border border-black/5 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 origin-top-right ${activeMenu === cat.id ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
                 onMouseEnter={() => handleMouseEnter(cat.id)}
                 onMouseLeave={handleMouseLeave}
@@ -102,8 +102,8 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
               </div>
             </div>
           ))}
-          
-          <button 
+
+          <button
             onClick={() => {
               const el = document.getElementById('contact');
               el?.scrollIntoView({ behavior: 'smooth' });
@@ -156,7 +156,7 @@ const Navbar = ({ projects, activeProject, setActiveProject }) => {
               </div>
             ))}
           </div>
-          
+
           <div className="pt-4 border-t border-black/5 flex justify-center">
             <div className="flex gap-6">
               <a href="https://github.com/ashfortune" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-all hover:scale-110">
@@ -209,31 +209,51 @@ const ChallengesSection = ({ challenges }) => {
 
 const SkillMapSection = ({ skills }) => {
   return (
-    <section id="skills" className="py-32 bg-white">
+    <section id="skills" className="py-32 bg-slate-50/50">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-24 text-text-main">Core Competencies</h2>
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-12">
-          {skills.map((group, idx) => (
-            <div key={idx} className="animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
-              <div className="flex justify-between items-end mb-4">
-                <h4 className="text-lg font-bold text-text-main">{group.category}</h4>
-                <span className="text-primary font-bold">{group.level}%</span>
+        {/* 섹션 헤더 */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <h2 className="text-4xl font-extrabold mb-4 text-slate-900 tracking-tight">Core Competencies</h2>
+          <p className="text-slate-600 text-lg font-medium">유재복의 풀스택 AI 엔지니어링 및 아키텍처 핵심 역량</p>
+        </div>
+
+        {/* 스킬 그리드 카드 레이아웃 */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {skills.map((group, idx) => {
+            const Icon = group.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary/20 flex flex-col justify-between animate-fade-in-up"
+                style={{ animationDelay: `${idx * 150}ms` }}
+              >
+                <div>
+                  {/* 카테고리 헤더 (아이콘 + 제목) */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-primary/5 text-primary flex items-center justify-center rounded-xl transition-colors duration-300">
+                      <Icon size={24} />
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-800">{group.category}</h4>
+                  </div>
+
+                  {/* 구분선 */}
+                  <div className="border-b border-slate-100 mb-6"></div>
+
+                  {/* 세부 기술 스택 리스트 */}
+                  <div className="flex flex-wrap gap-2.5">
+                    {group.skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-3.5 py-1.5 bg-slate-50/80 text-slate-600 text-sm font-medium rounded-lg border border-slate-100 hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all duration-200 cursor-default"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="skill-bar-container">
-                <div 
-                  className="skill-bar-fill animate-width" 
-                  style={{ '--target-width': `${group.level}%` }}
-                ></div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill, i) => (
-                  <span key={i} className="px-3 py-1 bg-slate-50 text-text-muted text-xs rounded-full border border-black/5">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -275,9 +295,9 @@ const FeatureItem = ({ icon: Icon, title, description, videoSrc, poster, reverse
               <source src={videoSrc} />
             </video>
           ) : (
-            <img 
-              src={videoSrc} 
-              alt={title} 
+            <img
+              src={videoSrc}
+              alt={title}
               className="w-full h-full object-contain"
             />
           )}
@@ -344,7 +364,7 @@ const App = () => {
             </div>
           </section>
           <SkillMapSection skills={coreSkills} />
-          
+
           <section className="py-32 bg-slate-50">
             <div className="container mx-auto px-6 text-center">
               <h2 className="text-3xl font-bold mb-12">Latest Projects</h2>
@@ -381,7 +401,7 @@ const App = () => {
             <div
               className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
               style={{
-                backgroundImage: activeProject.heroBg 
+                backgroundImage: activeProject.heroBg
                   ? `linear-gradient(to bottom, rgba(255, 255, 255, 0.4), #ffffff), url('${activeProject.heroBg}')`
                   : `linear-gradient(to bottom, #f8fafc, #ffffff)`,
                 opacity: activeProject.heroBg ? 0.7 : 1
@@ -397,7 +417,7 @@ const App = () => {
                   {activeProject.heroTagline.split(',')[1]}
                 </span>
               </h1>
-              
+
               <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in opacity-0 [animation-delay:200ms]">
                 {activeProject.highlights?.map((h, i) => {
                   const IconComponent = h.icon;
